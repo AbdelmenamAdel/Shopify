@@ -9,5 +9,5 @@ void main() async {
   flutterErrorWidget();
   await EnvVariable.instance.init(envType: EnvTypeEnum.dev);
   Firebase.initializeApp();
-  runApp(const Shopify());
+  runApp(const ConnectivityCheck());
 }
