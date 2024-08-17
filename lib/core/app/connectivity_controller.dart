@@ -2,32 +2,26 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 class ConnectivityController {
-  ConnectivityController._();
-  final Connectivity _connectivity = Connectivity();
-  static final ConnectivityController instance = ConnectivityController._();
-  ValueNotifier<bool> isConnected = ValueNotifier(true);
-  Future<void> initialize() async {
-    var result = await _connectivity.checkConnectivity();
-    isInternerConnected(result);
-    _connectivity.onConnectivityChanged.listen((isInternetConnected) {
-      result = isInternetConnected;
-      isInternerConnected(result);
+  ValueNotifier<bool> isConnected = ValueNotifier(false);
+  Future<void> init() async {
+    List<ConnectivityResult> result = await Connectivity().checkConnectivity();
+    isInternetConnected(result);
+    Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> result) {
+      isInternetConnected(result);
     });
   }
 
-  bool isInternerConnected(List<ConnectivityResult> result) {
-    for (final res in result) {
-      if (res == ConnectivityResult.mobile ||
-          res == ConnectivityResult.wifi ||
-          res == ConnectivityResult.ethernet) {
-        isConnected.value = true;
-        return true;
-      } else {
-        isConnected.value = false;
-        return false;
-      }
+  bool isInternetConnected(List<ConnectivityResult> result) {
+    if (result[0] == ConnectivityResult.none) {
+      isConnected.value = false;
+      return false;
+    } else if (result[0] == ConnectivityResult.mobile ||
+        result[0] == ConnectivityResult.wifi) {
+      isConnected.value = true;
+      return true;
     }
-    isConnected.value = false;
     return false;
   }
 }
