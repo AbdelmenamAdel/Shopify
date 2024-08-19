@@ -5,6 +5,7 @@ import 'package:shopify/core/common/animations/animate_do.dart';
 import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/language/lang_keys.dart';
+import 'package:shopify/core/routes/app_routes.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
 import 'package:shopify/features/auth/presentation/widgets/auth_title_info.dart';
 import 'package:shopify/features/auth/presentation/widgets/dark_and_lang_buttons.dart';
@@ -44,12 +45,17 @@ class LoginViewBody extends StatelessWidget {
               ),
               CustomFadeInDown(
                 duration: 400,
-                child: TextApp(
-                  text: context.translate(LangKeys.createAccount),
-                  theme: context.textStyle.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeightHelper.bold,
-                    color: context.color.bluePinkLight,
+                child: TextButton(
+                  onPressed: () {
+                    context.pushName(AppRoutes.signUp);
+                  },
+                  child: TextApp(
+                    text: context.translate(LangKeys.createAccount),
+                    theme: context.textStyle.copyWith(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeightHelper.bold,
+                      color: context.color.bluePinkLight,
+                    ),
                   ),
                 ),
               ),
