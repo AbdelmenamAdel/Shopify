@@ -20,7 +20,8 @@ class Shopify extends StatelessWidget {
           create: (context) => sl<AppCubit>()
             ..changeAppThemeMode(
               sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
-            ),
+            )
+            ..getSavedLanguage(),
         ),
       ],
       child: ScreenUtilInit(
@@ -34,7 +35,7 @@ class Shopify extends StatelessWidget {
               final cubit = context.read<AppCubit>();
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                locale: const Locale('en', 'US'),
+                locale: Locale(cubit.currentLangCode),
                 supportedLocales: AppLocalizationsSetup.supportedLocales,
                 localizationsDelegates:
                     AppLocalizationsSetup.localizationsDelegates,
