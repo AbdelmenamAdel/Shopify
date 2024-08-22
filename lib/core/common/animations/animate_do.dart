@@ -16,11 +16,17 @@ class CustomFadeInDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInDown(
-      delay: const Duration(milliseconds: 300),
-      duration: Duration(milliseconds: duration),
-      child: child,
-    );
+    return SharedPref().getString(PrefKeys.language) == 'ar'
+        ? FadeInDown(
+            delay: const Duration(milliseconds: 300),
+            duration: Duration(milliseconds: duration),
+            child: child,
+          )
+        : FadeInUp(
+            delay: const Duration(milliseconds: 300),
+            duration: Duration(milliseconds: duration),
+            child: child,
+          );
   }
 }
 
@@ -37,11 +43,17 @@ class CustomFadeInUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FadeInUp(
-      delay: const Duration(milliseconds: 300),
-      duration: Duration(milliseconds: duration),
-      child: child,
-    );
+    return SharedPref().getString(PrefKeys.language) == 'ar'
+        ? FadeInUp(
+            delay: const Duration(milliseconds: 300),
+            duration: Duration(milliseconds: duration),
+            child: child,
+          )
+        : FadeInDown(
+            delay: const Duration(milliseconds: 300),
+            duration: Duration(milliseconds: duration),
+            child: child,
+          );
   }
 }
 
