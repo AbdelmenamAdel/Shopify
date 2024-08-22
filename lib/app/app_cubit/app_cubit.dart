@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopify/core/services/shared_pref/pref_keys.dart';
@@ -33,13 +34,13 @@ class AppCubit extends Cubit<AppState> {
 
     currentLangCode = result!;
 
-    // emit(AppState.languageChange(locale: Locale(currentLangCode)));
+    emit(AppState.languageChange(locale: Locale(currentLangCode)));
   }
 
   Future<void> _changeLang(String langCode) async {
     await SharedPref().setString(PrefKeys.language, langCode);
     currentLangCode = langCode;
-    // emit(AppState.languageChange(locale: Locale(currentLangCode)));
+    emit(AppState.languageChange(locale: Locale(currentLangCode)));
   }
 
   void toArabic() => _changeLang('ar');
