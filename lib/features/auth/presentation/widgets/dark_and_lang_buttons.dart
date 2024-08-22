@@ -42,11 +42,11 @@ class DarkAndLangButtons extends StatelessWidget {
           duration: 400,
           child: CustomLinearButton(
             onPressed: () {
-              // if (AppLocalizations.of(context)!.isEnLocale) {
-              //   cubit.toArabic();
-              // } else {
-              //   cubit.toEnglish();
-              // }
+              if (AppLocalizations.of(context)!.isEnLocale) {
+                cubit.toArabic();
+              } else {
+                cubit.toEnglish();
+              }
             },
             height: 44.h,
             width: 100.w,
