@@ -4,8 +4,8 @@ import 'package:shopify/core/language/app_localizations.dart';
 
 class AppLocalizationsSetup {
   static const Iterable<Locale> supportedLocales = [
-    Locale('en', 'US'),
-    Locale('ar', 'EG'),
+    Locale('en'),
+    Locale('ar'),
   ];
 
   static const Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates =
