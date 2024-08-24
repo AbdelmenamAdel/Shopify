@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify/app/app.dart';
 import 'package:shopify/core/app/bloc_observer.dart';
 import 'package:shopify/core/app/env.variables.dart';
+import 'package:shopify/core/common/widgets/error_widget.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/services/shared_pref/shared_pref.dart';
-import 'package:shopify/core/widgets/error_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
