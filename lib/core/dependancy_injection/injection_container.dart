@@ -2,12 +2,15 @@ import 'package:get_it/get_it.dart';
 import 'package:shopify/app/app_cubit/app_cubit.dart';
 import 'package:shopify/core/services/graphql/api_service.dart';
 import 'package:shopify/core/services/graphql/dio_factory.dart';
+import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
+import 'package:shopify/features/auth/data/repos/auth_repo.dart';
+import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
   await _initCore();
-  // await _initAuth();
+  await _initAuth();
   // await _initDashBoard();
   // await _initCategoriesAdmin();
   // await _initProductsAdmin();
@@ -37,12 +40,12 @@ Future<void> _initCore() async {
   // ..registerLazySingleton(() => UploadImageDataSource(sl()));
 }
 
-// Future<void> _initAuth() async {
-//   sl
-//     ..registerFactory(() => AuthBloc(sl()))
-//     ..registerLazySingleton(() => AuthRepos(sl()))
-//     ..registerLazySingleton(() => AuthDataSource(sl()));
-// }
+Future<void> _initAuth() async {
+  sl
+    ..registerFactory(() => AuthBloc(sl()))
+    ..registerLazySingleton(() => AuthRepos(sl()))
+    ..registerLazySingleton(() => AuthDataSource(sl()));
+}
 
 // Future<void> _initDashBoard() async {
 //   sl
