@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shopify/app/app_cubit/app_cubit.dart';
+import 'package:shopify/core/app/app_cubit/app_cubit.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/language/app_localizations_setup.dart';
 import 'package:shopify/core/routes/app_routes.dart';
@@ -42,6 +42,7 @@ class Shopify extends StatelessWidget {
                 localeResolutionCallback:
                     AppLocalizationsSetup.localeResolutionCallback,
                 theme: cubit.isDark ? themeLight() : themeDark(),
+                navigatorKey: sl<GlobalKey<NavigatorState>>(),
                 onGenerateRoute: AppRoutes.onGenerateRoute,
                 initialRoute:
                     SharedPref().getString(PrefKeys.accessToken) != null
