@@ -32,7 +32,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await result.when(
       success: (loginData) async {
         final token = loginData.data.login.accessToken ?? '';
-        log(token);
         // ! save token
         await SharedPref().setString(
           PrefKeys.accessToken,
@@ -45,6 +44,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await SharedPref().setInt(
           PrefKeys.userId,
           user.userId ?? 0,
+        );
+        await SharedPref().setString(
+          PrefKeys.userRole,
+          user.userRole ?? '',
         );
         emit(AuthState.success(userRole: user.userRole ?? ''));
       },
