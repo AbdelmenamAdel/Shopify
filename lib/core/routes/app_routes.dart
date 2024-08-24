@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify/core/common/screens/under_build_screen.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/routes/base_routes.dart';
+import 'package:shopify/features/admin/home_admin_view.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/auth/presentation/views/login_view.dart';
 import 'package:shopify/features/auth/presentation/views/sign_up_view.dart';
+import 'package:shopify/features/customer/customer_home_view.dart';
 
 class AppRoutes {
   static const String login = 'login';
@@ -47,15 +49,10 @@ class AppRoutes {
       //         child: const SignUpScreen(),
       //       ),
       //     );
-      //   case homeAdmin:
-      //     return BaseRoute(page: const HomeAdminScreen());
-      //   case mainCustomer:
-      //     return BaseRoute(
-      //       page: BlocProvider(
-      //         create: (context) => sl<MainCubit>(),
-      //         child: const MainScreen(),
-      //       ),
-      //     );
+      case homeAdmin:
+        return BaseRoute(page: const HomeAdminView());
+      case mainCustomer:
+        return BaseRoute(page: const CustomerHomeView());
       //   case webview:
       //     return BaseRoute(
       //       page: CustomWebView(
