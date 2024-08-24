@@ -47,7 +47,7 @@ class _LoginTextFormState extends State<LoginTextForm> {
               hintText: context.translate(LangKeys.email),
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
-                if (!AppRegex.isEmailValid('_bloc.emailController.text')) {
+                if (!AppRegex.isEmailValid(_bloc.emailController.text)) {
                   return context.translate(LangKeys.validEmail);
                 }
                 return null;
