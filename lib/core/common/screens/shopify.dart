@@ -43,7 +43,15 @@ class Shopify extends StatelessWidget {
                     AppLocalizationsSetup.localeResolutionCallback,
                 theme: cubit.isDark ? themeLight() : themeDark(),
                 onGenerateRoute: AppRoutes.onGenerateRoute,
-                initialRoute: AppRoutes.login,
+                initialRoute:
+                    SharedPref().getString(PrefKeys.accessToken) != null
+                        ? SharedPref().getString(PrefKeys.userRole) == 'admin'
+                            ? AppRoutes.homeAdmin
+                            : SharedPref().getString(PrefKeys.userRole) ==
+                                    'customer'
+                                ? AppRoutes.mainCustomer
+                                : AppRoutes.login
+                        : AppRoutes.login,
               );
             },
           ),
