@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify/core/common/screens/under_build_screen.dart';
+import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/routes/base_routes.dart';
+import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/auth/presentation/views/login_view.dart';
 import 'package:shopify/features/auth/presentation/views/sign_up_view.dart';
 
@@ -21,18 +23,16 @@ class AppRoutes {
     switch (settings.name) {
       case login:
         return BaseRoute(
-          page: const LoginView(),
+          page: BlocProvider(
+            create: (context) => sl<AuthBloc>(),
+            child: const LoginView(),
+          ),
         );
       case signUp:
         return BaseRoute(
           page: const SignUpView(),
         );
-      // return BaseRoute(
-      //   page: BlocProvider(
-      //     create: (context) => sl<AuthBloc>(),
-      //     child: const LoginScreen(),
-      //   ),
-      // );
+
       // case signUp:
       //     return BaseRoute(
       //       page: MultiBlocProvider(
