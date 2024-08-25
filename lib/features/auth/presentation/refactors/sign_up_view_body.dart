@@ -25,29 +25,18 @@ class SignUpViewBody extends StatelessWidget {
           child: Column(
             children: [
               const DarkAndLangButtons(),
-              SizedBox(
-                height: 40.h,
-              ),
+              SizedBox(height: 30.h),
               AuthTitleInfo(
                 title: context.translate(LangKeys.signUp),
                 description: context.translate(LangKeys.welcome),
               ),
-              SizedBox(
-                height: 10.h,
-              ),
+              SizedBox(height: 10.h),
               // user avatar
               const UserAvatarImage(),
-              SizedBox(
-                height: 20.h,
-              ),
+              SizedBox(height: 10.h),
               const SignUpTextForm(),
-              SizedBox(
-                height: 20.h,
-              ),
+              SizedBox(height: 10.h),
               const SignUpButton(),
-              SizedBox(
-                height: 20.h,
-              ),
               CustomFadeInDown(
                 duration: 400,
                 child: TextButton(
