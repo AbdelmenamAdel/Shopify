@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopify/core/app/upload_image/cubit/upload_image_cubit.dart';
+import 'package:shopify/core/common/screens/custom_web_view.dart';
 import 'package:shopify/core/common/screens/under_build_screen.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/routes/base_routes.dart';
-import 'package:shopify/features/admin/home_admin_view.dart';
+import 'package:shopify/features/admin/home/presentation/views/home_admin_view.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/auth/presentation/views/login_view.dart';
 import 'package:shopify/features/auth/presentation/views/sign_up_view.dart';
@@ -32,33 +34,28 @@ class AppRoutes {
         );
       case signUp:
         return BaseRoute(
-          page: const SignUpView(),
+          page: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => sl<UploadImageCubit>(),
+              ),
+              BlocProvider(
+                create: (context) => sl<AuthBloc>(),
+              ),
+            ],
+            child: const SignUpView(),
+          ),
         );
-
-      // case signUp:
-      //     return BaseRoute(
-      //       page: MultiBlocProvider(
-      //         providers: [
-      //           BlocProvider(
-      //             create: (context) => sl<UploadImageCubit>(),
-      //           ),
-      //           BlocProvider(
-      //             create: (context) => sl<AuthBloc>(),
-      //           ),
-      //         ],
-      //         child: const SignUpScreen(),
-      //       ),
-      //     );
       case homeAdmin:
         return BaseRoute(page: const HomeAdminView());
       case mainCustomer:
         return BaseRoute(page: const CustomerHomeView());
-      //   case webview:
-      //     return BaseRoute(
-      //       page: CustomWebView(
-      //         url: args! as String,
-      //       ),
-      //     );
+      case webview:
+        return BaseRoute(
+          page: CustomWebView(
+            url: args! as String,
+          ),
+        );
       //   case productDetails:
       //     return BaseRoute(
       //       page: ProductDetailsScreen(
