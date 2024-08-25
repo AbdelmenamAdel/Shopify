@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:shopify/core/app/upload_image/model/upload_image_response.dart';
 import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
+import 'package:shopify/features/auth/data/models/signup/sign_up_response.dart';
 part 'api_service.g.dart';
 
 const String baseUrl = 'https://api.escuelajs.co';
@@ -19,15 +21,15 @@ abstract class ApiService {
   @GET('/api/v1/auth/profile')
   Future<UserRoleResponse> userRole();
 
-  // @POST('/api/v1/files/upload')
-  // Future<UploadImageResourse> uploadImage(
-  //   @Body() FormData file,
-  // );
+  @POST('/api/v1/files/upload')
+  Future<UploadImageResourse> uploadImage(
+    @Body() FormData file,
+  );
 
-  // @POST(graphql)
-  // Future<SignUpResponse> signUp(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<SignUpResponse> signUp(
+    @Body() Map<String, dynamic> mutation,
+  );
 
   // @POST(graphql)
   // Future<ProductsNumberResponse> numberOfProducts(
