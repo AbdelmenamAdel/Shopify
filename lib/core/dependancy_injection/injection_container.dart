@@ -1,5 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shopify/app/app_cubit/app_cubit.dart';
+import 'package:shopify/core/app/app_cubit/app_cubit.dart';
+import 'package:shopify/core/app/upload_image/cubit/upload_image_cubit.dart';
+import 'package:shopify/core/app/upload_image/data_source/upload_image_data_source.dart';
+import 'package:shopify/core/app/upload_image/repo/upload_image_repo.dart';
 import 'package:shopify/core/services/graphql/api_service.dart';
 import 'package:shopify/core/services/graphql/dio_factory.dart';
 import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
@@ -28,16 +32,16 @@ Future<void> setupInjector() async {
 
 Future<void> _initCore() async {
   final dio = DioFactory.getDio();
-  // final navigatorKey = GlobalKey<NavigatorState>();
+  final navigatorKey = GlobalKey<NavigatorState>();
 
   sl
     ..registerFactory(AppCubit.new)
-    ..registerLazySingleton<ApiService>(() => ApiService(dio));
-  // ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey)
-  // ..registerFactory(() => UploadImageCubit(sl()))
+    ..registerLazySingleton<ApiService>(() => ApiService(dio))
+    ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey)
+    ..registerFactory(() => UploadImageCubit(sl()))
+    ..registerLazySingleton(() => UploadImageRepo(sl()))
+    ..registerLazySingleton(() => UploadImageDataSource(sl()));
   // ..registerFactory(ShareCubit.new)
-  // ..registerLazySingleton(() => UploadImageRepo(sl()))
-  // ..registerLazySingleton(() => UploadImageDataSource(sl()));
 }
 
 Future<void> _initAuth() async {
