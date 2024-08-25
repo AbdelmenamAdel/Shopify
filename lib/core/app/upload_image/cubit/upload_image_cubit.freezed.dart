@@ -635,20 +635,20 @@ abstract class SuccessState implements UploadImageState {
 }
 
 /// @nodoc
-abstract class _$$RemovemageStateImplCopyWith<$Res> {
-  factory _$$RemovemageStateImplCopyWith(_$RemovemageStateImpl value,
-          $Res Function(_$RemovemageStateImpl) then) =
-      __$$RemovemageStateImplCopyWithImpl<$Res>;
+abstract class _$$RemoveimageStateImplCopyWith<$Res> {
+  factory _$$RemoveimageStateImplCopyWith(_$RemoveimageStateImpl value,
+          $Res Function(_$RemoveimageStateImpl) then) =
+      __$$RemoveimageStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String imageUrl});
 }
 
 /// @nodoc
-class __$$RemovemageStateImplCopyWithImpl<$Res>
-    extends _$UploadImageStateCopyWithImpl<$Res, _$RemovemageStateImpl>
-    implements _$$RemovemageStateImplCopyWith<$Res> {
-  __$$RemovemageStateImplCopyWithImpl(
-      _$RemovemageStateImpl _value, $Res Function(_$RemovemageStateImpl) _then)
+class __$$RemoveimageStateImplCopyWithImpl<$Res>
+    extends _$UploadImageStateCopyWithImpl<$Res, _$RemoveimageStateImpl>
+    implements _$$RemoveimageStateImplCopyWith<$Res> {
+  __$$RemoveimageStateImplCopyWithImpl(_$RemoveimageStateImpl _value,
+      $Res Function(_$RemoveimageStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -656,7 +656,7 @@ class __$$RemovemageStateImplCopyWithImpl<$Res>
   $Res call({
     Object? imageUrl = null,
   }) {
-    return _then(_$RemovemageStateImpl(
+    return _then(_$RemoveimageStateImpl(
       imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -667,8 +667,8 @@ class __$$RemovemageStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RemovemageStateImpl implements RemoveimageState {
-  const _$RemovemageStateImpl({required this.imageUrl});
+class _$RemoveimageStateImpl implements RemoveimageState {
+  const _$RemoveimageStateImpl({required this.imageUrl});
 
   @override
   final String imageUrl;
@@ -682,7 +682,7 @@ class _$RemovemageStateImpl implements RemoveimageState {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemovemageStateImpl &&
+            other is _$RemoveimageStateImpl &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl));
   }
@@ -693,8 +693,8 @@ class _$RemovemageStateImpl implements RemoveimageState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RemovemageStateImplCopyWith<_$RemovemageStateImpl> get copyWith =>
-      __$$RemovemageStateImplCopyWithImpl<_$RemovemageStateImpl>(
+  _$$RemoveimageStateImplCopyWith<_$RemoveimageStateImpl> get copyWith =>
+      __$$RemoveimageStateImplCopyWithImpl<_$RemoveimageStateImpl>(
           this, _$identity);
 
   @override
@@ -786,11 +786,11 @@ class _$RemovemageStateImpl implements RemoveimageState {
 
 abstract class RemoveimageState implements UploadImageState {
   const factory RemoveimageState({required final String imageUrl}) =
-      _$RemovemageStateImpl;
+      _$RemoveimageStateImpl;
 
   String get imageUrl;
   @JsonKey(ignore: true)
-  _$$RemovemageStateImplCopyWith<_$RemovemageStateImpl> get copyWith =>
+  _$$RemoveimageStateImplCopyWith<_$RemoveimageStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
