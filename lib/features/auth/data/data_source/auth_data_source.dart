@@ -5,6 +5,8 @@ import 'package:shopify/core/services/graphql/auth/auth_queries.dart';
 import 'package:shopify/features/auth/data/models/login/login_request_body.dart';
 import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
+import 'package:shopify/features/auth/data/models/signup/sign_up_request_body.dart';
+import 'package:shopify/features/auth/data/models/signup/sign_up_response.dart';
 
 class AuthDataSource {
   const AuthDataSource(this._graphql);
@@ -28,14 +30,14 @@ class AuthDataSource {
     return response;
   }
 
-  //SignUp
-  // Future<SignUpResponse> signUp({required SignUpRequestBody body}) async {
-  //   final response =
-  //       await _graphql.signUp(AuthQueries().signUpMapQuery(body: body));
-  //   return response;
-  // }
+  // SignUp
+  Future<SignUpResponse> signUp({required SignUpRequestBody body}) async {
+    final response =
+        await _graphql.signUp(AuthQueries().signUpMapQuery(body: body));
+    return response;
+  }
 
-  // // add user id in firebase to used with notfication data base
+  // add user id in firebase to used with notfication data base
   // Future<void> addUserIdFirebase({required String userId}) async {
   //   await FirebaseFirestore.instance
   //       .collection(usersCollection)
