@@ -1,4 +1,5 @@
 import 'package:shopify/features/auth/data/models/login/login_request_body.dart';
+import 'package:shopify/features/auth/data/models/signup/sign_up_request_body.dart';
 
 class AuthQueries {
   factory AuthQueries() {
@@ -25,7 +26,7 @@ class AuthQueries {
     };
   }
 
-  /* Map<String, dynamic> signUpMapQuery({required SignUpRequestBody body}) {
+  Map<String, dynamic> signUpMapQuery({required SignUpRequestBody body}) {
     return {
       'query': r'''
               mutation SignUp($name: String!, $email: String! , $password: String!, $avatar: String!) {
@@ -50,5 +51,5 @@ class AuthQueries {
         'avatar': body.avatar,
       },
     };
-  }*/
+  }
 }
