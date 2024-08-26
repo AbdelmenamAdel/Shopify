@@ -1,6 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:shopify/core/app/upload_image/model/upload_image_response.dart';
+import 'package:shopify/features/admin/categories/data/models/create_category_response.dart';
+import 'package:shopify/features/admin/categories/data/models/get_all_categories_reponse.dart';
+import 'package:shopify/features/admin/dashboard/data/models/categories_count_response.dart';
+import 'package:shopify/features/admin/dashboard/data/models/products_count_response.dart';
+import 'package:shopify/features/admin/dashboard/data/models/users_count_response.dart';
 import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
 import 'package:shopify/features/auth/data/models/signup/sign_up_response.dart';
@@ -31,40 +36,40 @@ abstract class ApiService {
     @Body() Map<String, dynamic> mutation,
   );
 
-  // @POST(graphql)
-  // Future<ProductsNumberResponse> numberOfProducts(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<ProductsCountResponse> numberOfProducts(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<CategoriesNumberResponse> numberOfCategories(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<CategoriesCountResponse> numberOfCategories(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<UsersNumberResponse> numberOfUsers(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<UsersCountResponse> numberOfUsers(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<CategoriesGetAllResponse> getAllCategories(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<CategoriesGetAllResponse> getAllCategories(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<CreateCategoryResponse> createCategory(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<CreateCategoryResponse> createCategory(
+    @Body() Map<String, dynamic> mutation,
+  );
 
-  // @POST(graphql)
-  // Future<void> deleteCategory(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<void> deleteCategory(
+    @Body() Map<String, dynamic> mutation,
+  );
 
-  // @POST(graphql)
-  // Future<void> updateCategory(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<void> updateCategory(
+    @Body() Map<String, dynamic> mutation,
+  );
 
   // @POST(graphql)
   // Future<GetAllProductResponse> getAllProduct(
