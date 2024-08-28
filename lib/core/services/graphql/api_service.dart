@@ -6,6 +6,8 @@ import 'package:shopify/features/admin/categories/data/models/get_all_categories
 import 'package:shopify/features/admin/dashboard/data/models/categories_count_response.dart';
 import 'package:shopify/features/admin/dashboard/data/models/products_count_response.dart';
 import 'package:shopify/features/admin/dashboard/data/models/users_count_response.dart';
+import 'package:shopify/features/admin/products/data/models/get_all_products_response.dart';
+import 'package:shopify/features/admin/users/data/models/get_all_users_response.dart';
 import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
 import 'package:shopify/features/auth/data/models/signup/sign_up_response.dart';
@@ -71,35 +73,35 @@ abstract class ApiService {
     @Body() Map<String, dynamic> mutation,
   );
 
-  // @POST(graphql)
-  // Future<GetAllProductResponse> getAllProduct(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<GetAllProductsResponse> getAllProduct(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<void> createProduct(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<void> createProduct(
+    @Body() Map<String, dynamic> mutation,
+  );
 
-  // @POST(graphql)
-  // Future<void> deleteProduct(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<void> deleteProduct(
+    @Body() Map<String, dynamic> mutation,
+  );
 
-  // @POST(graphql)
-  // Future<void> updateProduct(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<void> updateProduct(
+    @Body() Map<String, dynamic> mutation,
+  );
 
-  // @POST(graphql)
-  // Future<GetAllUsersResponse> getAllUsers(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<GetAllUsersResponse> getAllUsers(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<void> deleteUser(
-  //   @Body() Map<String, dynamic> mutation,
-  // );
+  @POST(graphql)
+  Future<void> deleteUser(
+    @Body() Map<String, dynamic> mutation,
+  );
 
   // @POST(graphql)
   // Future<BannersResponse> getBanners(
