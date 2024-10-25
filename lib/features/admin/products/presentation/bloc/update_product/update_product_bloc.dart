@@ -9,7 +9,7 @@ part 'update_product_state.dart';
 part 'update_product_bloc.freezed.dart';
 
 class UpdateProductBloc extends Bloc<UpdateProductEvent, UpdateProductState> {
-  UpdateProductBloc(this._repo) : super(_Initial()) {
+  UpdateProductBloc(this._repo) : super(const _Initial()) {
     on<ReNewProductEvent>(_updateProduct);
   }
   final ProductsAdminRepo _repo;
