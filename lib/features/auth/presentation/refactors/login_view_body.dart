@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/animations/animate_do.dart';
 import 'package:shopify/core/common/widgets/text_app.dart';
