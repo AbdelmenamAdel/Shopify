@@ -22,7 +22,7 @@ class FirebaseCloudMessaging {
   static const String subscriptionKey = 'Shopify';
 
   final _firebaseMessaging = FirebaseMessaging.instance;
-  ValueNotifier<bool> isNotificationSubscribe = ValueNotifier(true);
+  ValueNotifier<bool> isSubscribe = ValueNotifier(true);
 
   bool isPermissionNotification = false;
 
@@ -44,11 +44,11 @@ class FirebaseCloudMessaging {
         .listen(FirebaseMessagingNavigate.backGroundHandler);
   }
 
-  Future<void> controllerForUserSubscribe(BuildContext context) async {
+  Future<void> controllerForUserSubscription(BuildContext context) async {
     if (isPermissionNotification == false) {
       await _permissionsNotification();
     } else {
-      if (isNotificationSubscribe.value == false) {
+      if (isSubscribe.value == false) {
         await _subscribeNotification();
         if (!context.mounted) return;
         ShowToast.showToastSuccessTop(
@@ -77,7 +77,7 @@ class FirebaseCloudMessaging {
       debugPrint('🔔🔔 User accepted the notification permission');
     } else {
       isPermissionNotification = false;
-      isNotificationSubscribe.value = false;
+      isSubscribe.value = false;
       debugPrint('🔕🔕 User not accepted the notification permission');
     }
   }
@@ -85,7 +85,7 @@ class FirebaseCloudMessaging {
   /// subscribe notification
 
   Future<void> _subscribeNotification() async {
-    isNotificationSubscribe.value = true;
+    isSubscribe.value = true;
     await FirebaseMessaging.instance.subscribeToTopic(subscriptionKey);
     debugPrint('====🔔 Notification Subscribed 🔔=====');
   }
@@ -93,7 +93,7 @@ class FirebaseCloudMessaging {
   /// unsubscribe notification
 
   Future<void> _unSubscribeNotification() async {
-    isNotificationSubscribe.value = false;
+    isSubscribe.value = false;
     await FirebaseMessaging.instance.unsubscribeFromTopic(subscriptionKey);
     debugPrint('====🔕 Notification Unsubscribed 🔕=====');
   }
@@ -113,7 +113,7 @@ class FirebaseCloudMessaging {
           'title': title,
           'body': body,
         },
-        'data': {'productId': productId},
+        // 'data': {'productId': productId},
       },
     };
     try {
@@ -145,4 +145,3 @@ class FirebaseCloudMessaging {
     }
   }
 }
-// https://fcm.googleapis.com/v1/projects/shopify-761e9/messages:send
