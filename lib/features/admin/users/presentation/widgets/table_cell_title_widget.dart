@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
@@ -35,8 +34,8 @@ class TableCellTitleWidget extends StatelessWidget {
             text: title,
             theme: context.textStyle.copyWith(
               fontFamily: FontFamilyHelper.poppinsEnglish,
-              fontSize: 12.sp,
-              fontWeight: FontWeightHelper.medium,
+              fontSize: 10.sp,
+              fontWeight: FontWeightHelper.bold,
             ),
           ),
         ],
