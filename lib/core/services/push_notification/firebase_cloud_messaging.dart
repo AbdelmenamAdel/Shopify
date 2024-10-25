@@ -1,11 +1,16 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopify/core/app/env.variables.dart';
 import 'package:shopify/core/common/toast/show_toast.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/language/lang_keys.dart';
 import 'package:shopify/core/services/push_notification/firebase_messaging_navigate.dart';
+import 'package:shopify/core/services/push_notification/get_server_key_token.dart';
 
 class FirebaseCloudMessaging {
   factory FirebaseCloudMessaging() => _instance;
@@ -14,10 +19,9 @@ class FirebaseCloudMessaging {
 
   static final FirebaseCloudMessaging _instance = FirebaseCloudMessaging._();
 
-  static const String subscribeKey = 'Shopify';
+  static const String subscriptionKey = 'Shopify';
 
   final _firebaseMessaging = FirebaseMessaging.instance;
-
   ValueNotifier<bool> isNotificationSubscribe = ValueNotifier(true);
 
   bool isPermissionNotification = false;
@@ -39,9 +43,6 @@ class FirebaseCloudMessaging {
     FirebaseMessaging.onMessageOpenedApp
         .listen(FirebaseMessagingNavigate.backGroundHandler);
   }
-
-  /// controller for the notification if user subscribe or unsubscribed
-  /// or accpeted the permission or not
 
   Future<void> controllerForUserSubscribe(BuildContext context) async {
     if (isPermissionNotification == false) {
@@ -85,7 +86,7 @@ class FirebaseCloudMessaging {
 
   Future<void> _subscribeNotification() async {
     isNotificationSubscribe.value = true;
-    await FirebaseMessaging.instance.subscribeToTopic(subscribeKey);
+    await FirebaseMessaging.instance.subscribeToTopic(subscriptionKey);
     debugPrint('====🔔 Notification Subscribed 🔔=====');
   }
 
@@ -93,7 +94,7 @@ class FirebaseCloudMessaging {
 
   Future<void> _unSubscribeNotification() async {
     isNotificationSubscribe.value = false;
-    await FirebaseMessaging.instance.unsubscribeFromTopic(subscribeKey);
+    await FirebaseMessaging.instance.unsubscribeFromTopic(subscriptionKey);
     debugPrint('====🔕 Notification Unsubscribed 🔕=====');
   }
 
@@ -103,6 +104,18 @@ class FirebaseCloudMessaging {
     required String body,
     required int productId,
   }) async {
+    final accessToken = await GetServerKeyToken().getServerKeyToken();
+    log(accessToken);
+    final message = {
+      'message': {
+        'topic': subscriptionKey,
+        'notification': {
+          'title': title,
+          'body': body,
+        },
+        'data': {'productId': productId},
+      },
+    };
     try {
       final response = await Dio().post<dynamic>(
         EnvVariable.instance.notifcationBaseUrl,
@@ -112,20 +125,21 @@ class FirebaseCloudMessaging {
           responseType: ResponseType.json,
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'key=${EnvVariable.instance.firebaseKey}',
+            'Authorization': 'Bearer $accessToken',
           },
         ),
-        data: {
-          'to': '/topics/$subscribeKey',
-          'notification': {
-            'title': title,
-            'body': body,
-          },
-          'data': {'productId': productId},
-        },
+        data: jsonEncode(message),
       );
 
-      debugPrint('Notification Created => ${response.data}');
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print('Notification sent successfully!');
+        }
+      } else {
+        if (kDebugMode) {
+          print('Failed to send notification: ${response.data}');
+        }
+      }
     } catch (e) {
       debugPrint('Notification Error => $e');
     }
