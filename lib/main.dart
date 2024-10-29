@@ -7,16 +7,22 @@ import 'package:shopify/core/app/bloc_observer.dart';
 import 'package:shopify/core/app/env.variables.dart';
 import 'package:shopify/core/common/widgets/error_widget.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
+import 'package:shopify/core/services/hive/hive_database.dart';
 import 'package:shopify/core/services/shared_pref/shared_pref.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   flutterErrorWidget();
-  await EnvVariable.instance.init(envType: EnvTypeEnum.dev);
-  await Firebase.initializeApp();
-  await SharedPref().instantiatePreferences();
-  await setupInjector();
   Bloc.observer = AppBlocObserver();
+  await Future.wait(
+    [
+      EnvVariable.instance.init(envType: EnvTypeEnum.dev),
+      Firebase.initializeApp(),
+      HiveDatabase().init(),
+      SharedPref().instantiatePreferences(),
+      setupInjector(),
+    ],
+  );
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
