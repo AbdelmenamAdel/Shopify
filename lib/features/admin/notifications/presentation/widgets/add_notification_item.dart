@@ -33,15 +33,15 @@ class AddNotificationItem extends StatelessWidget {
           children: [
             const Spacer(),
             //Title
-            const NotificationInfo(
+            NotificationInfo(
               title: 'Tilte: ',
-              body: 'notificationModel.title',
+              body: notificationModel.title,
             ),
             const Spacer(),
             //Body
-            const NotificationInfo(
+            NotificationInfo(
               title: 'Body: ',
-              body: 'notificationModel.body',
+              body: notificationModel.body,
             ),
             const Spacer(),
             NotificationInfo(
