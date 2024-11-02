@@ -17,6 +17,11 @@ import 'package:shopify/features/admin/dashboard/data/bloc/products_count/produc
 import 'package:shopify/features/admin/dashboard/data/bloc/users_count/users_count_bloc.dart';
 import 'package:shopify/features/admin/dashboard/data/data_source/dashboard_data_sourse.dart';
 import 'package:shopify/features/admin/dashboard/data/repos/dashboard_repo.dart';
+import 'package:shopify/features/admin/notifications/data/models/data_source/add_notificaion_data_source.dart';
+import 'package:shopify/features/admin/notifications/data/models/repos/add_notification_repo.dart';
+import 'package:shopify/features/admin/notifications/presentation/bloc/add_notification/add_notification_bloc.dart';
+import 'package:shopify/features/admin/notifications/presentation/bloc/get_all_notification_admin/get_all_notification_admin_bloc.dart';
+import 'package:shopify/features/admin/notifications/presentation/bloc/send_notification/send_notification_bloc.dart';
 import 'package:shopify/features/admin/products/data/data_source/products_admin_data_source.dart';
 import 'package:shopify/features/admin/products/data/repos/products_admin_repo.dart';
 import 'package:shopify/features/admin/products/presentation/bloc/create_product/create_prodcut_bloc.dart';
@@ -40,7 +45,7 @@ Future<void> setupInjector() async {
   await _initCategoriesAdmin();
   await _initProductsAdmin();
   await _initUsersAdmin();
-  // await _initAddNotification();
+  await _initPushNotification();
   // await _initMain();
   // await _initProfile();
   // await _initHome();
@@ -109,14 +114,14 @@ Future<void> _initUsersAdmin() async {
     ..registerFactory(() => DeleteUserBloc(sl()));
 }
 
-// Future<void> _initAddNotification() async {
-//   sl
-//     ..registerFactory(AddNotificationBloc.new)
-//     ..registerFactory(GetAllNotificationAdminBloc.new)
-//     ..registerFactory(() => SendNotificationBloc(sl()))
-//     ..registerLazySingleton(() => AddNotificationRepo(sl()))
-//     ..registerLazySingleton(AddNotificationDataSource.new);
-// }
+Future<void> _initPushNotification() async {
+  sl
+    ..registerFactory(AddNotificationBloc.new)
+    ..registerFactory(GetAllNotificationAdminBloc.new)
+    ..registerFactory(() => SendNotificationBloc(sl()))
+    ..registerLazySingleton(() => AddNotificationRepo(sl()))
+    ..registerLazySingleton(AddNotificationDataSource.new);
+}
 
 // Future<void> _initMain() async {
 //   sl.registerFactory(MainCubit.new);
