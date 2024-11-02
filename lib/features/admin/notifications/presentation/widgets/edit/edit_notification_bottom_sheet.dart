@@ -7,14 +7,15 @@ import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/styles/colors/colors_dark.dart';
 import 'package:shopify/core/styles/fonts/font_family_helper.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
+import 'package:shopify/features/admin/notifications/data/models/push_notification_model.dart';
 
 class EditNotificationBottomSheet extends StatefulWidget {
   const EditNotificationBottomSheet({
-    // required this.notificationModel,
+    required this.notificationModel,
     super.key,
   });
 
-  // final AddNotificationModel notificationModel;
+  final PushNotificationModel notificationModel;
 
   @override
   State<EditNotificationBottomSheet> createState() =>
@@ -32,9 +33,9 @@ class _EditNotificationBottomSheetState
   @override
   void initState() {
     super.initState();
-    // titleController.text = widget.notificationModel.title;
-    // bodyController.text = widget.notificationModel.body;
-    // productIdController.text = widget.notificationModel.productId.toString();
+    titleController.text = widget.notificationModel.title;
+    bodyController.text = widget.notificationModel.body;
+    productIdController.text = widget.notificationModel.productId.toString();
   }
 
   @override
@@ -151,19 +152,19 @@ class _EditNotificationBottomSheetState
   }
 
   void _validAddNotification(BuildContext context) {
-    // if (formKey.currentState!.validate()) {
-    //   widget.notificationModel.title = titleController.text.isEmpty
-    //       ? widget.notificationModel.title
-    //       : titleController.text.trim();
-    //   widget.notificationModel.body = bodyController.text.isEmpty
-    //       ? widget.notificationModel.body
-    //       : bodyController.text.trim();
-    //   widget.notificationModel.productId = productIdController.text.isEmpty
-    //       ? widget.notificationModel.productId
-    //       : int.parse(productIdController.text.trim());
+    if (formKey.currentState!.validate()) {
+      widget.notificationModel.title = titleController.text.isEmpty
+          ? widget.notificationModel.title
+          : titleController.text.trim();
+      widget.notificationModel.body = bodyController.text.isEmpty
+          ? widget.notificationModel.body
+          : bodyController.text.trim();
+      widget.notificationModel.productId = productIdController.text.isEmpty
+          ? widget.notificationModel.productId
+          : int.parse(productIdController.text.trim());
 
-    //   widget.notificationModel.save();
-    //   context.pop();
-    // }
+      widget.notificationModel.save();
+      context.pop();
+    }
   }
 }
