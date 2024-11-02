@@ -15,13 +15,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   flutterErrorWidget();
   Bloc.observer = AppBlocObserver();
+  await SharedPref().instantiatePreferences();
   await Future.wait(
     [
       EnvVariable.instance.init(envType: EnvTypeEnum.dev),
       setupInjector(),
       Firebase.initializeApp(),
       HiveDatabase().init(),
-      SharedPref().instantiatePreferences(),
     ],
   );
   await Future.wait([
