@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopify/core/common/dialogs/custom_dialogs.dart';
 import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/language/lang_keys.dart';
 import 'package:shopify/core/services/push_notification/firebase_cloud_messaging.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
+import 'package:shopify/core/utils/app_logout.dart';
 
 class CustomerHomeView extends StatelessWidget {
   const CustomerHomeView({super.key});
@@ -15,6 +17,21 @@ class CustomerHomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            CustomDialog.twoButtonDialog(
+              context: context,
+              textBody: 'Do you want log out?',
+              textButton1: 'Yes',
+              textButton2: 'No',
+              isLoading: false,
+              onPressed: () async {
+                await AppLogout().logout();
+              },
+            );
+          },
+          icon: const Icon(Icons.logout_outlined),
+        ),
         title: const Text('Customer Home'),
       ),
       body: const Center(
