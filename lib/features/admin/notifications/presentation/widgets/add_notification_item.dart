@@ -3,20 +3,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
+import 'package:shopify/core/extensions/date_extension.dart';
 import 'package:shopify/core/styles/colors/colors_dark.dart';
 import 'package:shopify/core/styles/fonts/font_family_helper.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
+import 'package:shopify/features/admin/notifications/data/models/push_notification_model.dart';
+import 'package:shopify/features/admin/notifications/presentation/widgets/delete/delete_notification_widget.dart';
 import 'package:shopify/features/admin/notifications/presentation/widgets/edit/edit_notification.dart';
+import 'package:shopify/features/admin/notifications/presentation/widgets/send/send_notification_widget.dart';
 
 class AddNotificationItem extends StatelessWidget {
   const AddNotificationItem({
-    // required this.notificationModel,
-    // required this.index,
+    required this.notificationModel,
+    required this.index,
     super.key,
   });
 
-  // final AddNotificationModel notificationModel;
-  // final int index;
+  final PushNotificationModel notificationModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -40,32 +44,29 @@ class AddNotificationItem extends StatelessWidget {
               body: 'notificationModel.body',
             ),
             const Spacer(),
-            const NotificationInfo(
+            NotificationInfo(
               title: 'Create At: ',
-              body: '11/11/2022',
-              // body: notificationModel.createAt.getFormatDayMonthYear(),
+              body: notificationModel.createAt.getFormatDayMonthYear(),
             ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 //delete notification
-                // DeleteNotificationWidget(
-                //   notificationModel: notificationModel,
-                // ),
-                const Icon(Icons.delete, color: Colors.red),
+                DeleteNotificationWidget(
+                  notificationModel: notificationModel,
+                ),
                 SizedBox(width: 40.w),
                 //Edit notification
-                const EditNotification(
-                    // notificationModel: notificationModel,
-                    ),
+                EditNotification(
+                  notificationModel: notificationModel,
+                ),
                 SizedBox(width: 40.w),
                 //send notification
-                // SendNotificationWidget(
-                //   notificationModel: notificationModel,
-                //   index: index,
-                // ),
-                const Icon(Icons.send, color: Colors.green),
+                SendNotificationWidget(
+                  notificationModel: notificationModel,
+                  index: index,
+                ),
               ],
             ),
           ],
