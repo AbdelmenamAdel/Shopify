@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/toast/show_toast.dart';
+import 'package:shopify/core/common/widgets/custom_loading_indecator.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/features/admin/notifications/data/models/push_notification_model.dart';
 import 'package:shopify/features/admin/notifications/presentation/bloc/send_notification/send_notification_bloc.dart';
@@ -43,9 +44,7 @@ class SendNotificationWidget extends StatelessWidget {
                   height: 25.h,
                   width: 25.w,
                   child: const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
+                    child: CustomLoadingIndecator(),
                   ),
                 );
               }
