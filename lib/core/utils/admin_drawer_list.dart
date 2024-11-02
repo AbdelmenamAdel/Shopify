@@ -6,6 +6,7 @@ import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/styles/fonts/font_family_helper.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
+import 'package:shopify/core/utils/app_logout.dart';
 import 'package:shopify/features/admin/categories/presentation/views/add_categories_view.dart';
 import 'package:shopify/features/admin/dashboard/presentation/views/dashboard_view.dart';
 import 'package:shopify/features/admin/notifications/presentation/views/push_notifications_view.dart';
@@ -111,7 +112,7 @@ List<DrawerItemModel> adminDrawerList(BuildContext context) {
             textButton2: 'No',
             isLoading: false,
             onPressed: () async {
-              // await AppLogout().logout();
+              await AppLogout().logout();
             },
           );
         },
