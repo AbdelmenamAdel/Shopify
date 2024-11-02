@@ -20,9 +20,9 @@ class GetAllNotificationAdminBloc
     FetchAllNotificationAdminEvent event,
     Emitter<GetAllNotificationAdminState> emit,
   ) async {
-    try {
-      emit(const GetAllNotificationAdminState.loading());
+    emit(const GetAllNotificationAdminState.loading());
 
+    try {
       final list = HiveDatabase().notificationBox!.values.toList();
 
       if (list.isEmpty) {
