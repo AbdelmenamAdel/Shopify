@@ -8,6 +8,7 @@ import 'package:shopify/core/app/env.variables.dart';
 import 'package:shopify/core/common/widgets/error_widget.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/services/hive/hive_database.dart';
+import 'package:shopify/core/services/push_notification/firebase_cloud_messaging.dart';
 import 'package:shopify/core/services/shared_pref/shared_pref.dart';
 
 void main() async {
@@ -17,12 +18,15 @@ void main() async {
   await Future.wait(
     [
       EnvVariable.instance.init(envType: EnvTypeEnum.dev),
+      setupInjector(),
       Firebase.initializeApp(),
       HiveDatabase().init(),
       SharedPref().instantiatePreferences(),
-      setupInjector(),
     ],
   );
+  await Future.wait([
+    FirebaseCloudMessaging().init(),
+  ]);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
