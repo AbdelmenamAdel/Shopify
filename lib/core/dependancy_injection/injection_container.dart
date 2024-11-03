@@ -35,6 +35,7 @@ import 'package:shopify/features/admin/users/presentation/bloc/get_all_users/get
 import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopify/features/auth/data/repos/auth_repo.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -46,7 +47,7 @@ Future<void> setupInjector() async {
   await _initProductsAdmin();
   await _initUsersAdmin();
   await _initPushNotification();
-  // await _initMain();
+  await _initMain();
   // await _initProfile();
   // await _initHome();
   // await _initProductDetails();
@@ -123,9 +124,9 @@ Future<void> _initPushNotification() async {
     ..registerLazySingleton(AddNotificationDataSource.new);
 }
 
-// Future<void> _initMain() async {
-//   sl.registerFactory(MainCubit.new);
-// }
+Future<void> _initMain() async {
+  sl.registerFactory(MainCubit.new);
+}
 
 // Future<void> _initProfile() async {
 //   sl
