@@ -224,10 +224,10 @@ class __$$CreateNotificationEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notificationModel = freezed,
+    Object? notificationModel = null,
   }) {
     return _then(_$CreateNotificationEventImpl(
-      notificationModel: freezed == notificationModel
+      notificationModel: null == notificationModel
           ? _value.notificationModel
           : notificationModel // ignore: cast_nullable_to_non_nullable
               as PushNotificationModel,
@@ -253,13 +253,12 @@ class _$CreateNotificationEventImpl implements CreateNotificationEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateNotificationEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other.notificationModel, notificationModel));
+            (identical(other.notificationModel, notificationModel) ||
+                other.notificationModel == notificationModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(notificationModel));
+  int get hashCode => Object.hash(runtimeType, notificationModel);
 
   @JsonKey(ignore: true)
   @override
@@ -377,10 +376,10 @@ class __$$DeleteNotificationEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? notificationModel = freezed,
+    Object? notificationModel = null,
   }) {
     return _then(_$DeleteNotificationEventImpl(
-      notificationModel: freezed == notificationModel
+      notificationModel: null == notificationModel
           ? _value.notificationModel
           : notificationModel // ignore: cast_nullable_to_non_nullable
               as PushNotificationModel,
@@ -406,13 +405,12 @@ class _$DeleteNotificationEventImpl implements DeleteNotificationEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeleteNotificationEventImpl &&
-            const DeepCollectionEquality()
-                .equals(other.notificationModel, notificationModel));
+            (identical(other.notificationModel, notificationModel) ||
+                other.notificationModel == notificationModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(notificationModel));
+  int get hashCode => Object.hash(runtimeType, notificationModel);
 
   @JsonKey(ignore: true)
   @override
