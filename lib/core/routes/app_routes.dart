@@ -9,7 +9,7 @@ import 'package:shopify/features/admin/home/presentation/views/home_admin_view.d
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/auth/presentation/views/login_view.dart';
 import 'package:shopify/features/auth/presentation/views/sign_up_view.dart';
-import 'package:shopify/features/customer/customer_home_view.dart';
+import 'package:shopify/features/customer/main/presentation/views/customer_main_view.dart';
 
 class AppRoutes {
   static const String login = 'login';
@@ -49,7 +49,7 @@ class AppRoutes {
       case homeAdmin:
         return BaseRoute(page: const HomeAdminView());
       case mainCustomer:
-        return BaseRoute(page: const CustomerHomeView());
+        return BaseRoute(page: const CustomerMainView());
       case webview:
         return BaseRoute(
           page: CustomWebView(
