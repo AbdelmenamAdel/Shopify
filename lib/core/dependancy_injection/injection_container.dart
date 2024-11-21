@@ -36,6 +36,9 @@ import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopify/features/auth/data/repos/auth_repo.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
+import 'package:shopify/features/customer/profile/data/data_source/profile_data_source.dart';
+import 'package:shopify/features/customer/profile/data/repos/profile_repo.dart';
+import 'package:shopify/features/customer/profile/presentation/bloc/profile/profile_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -48,7 +51,7 @@ Future<void> setupInjector() async {
   await _initUsersAdmin();
   await _initPushNotification();
   await _initMain();
-  // await _initProfile();
+  await _initProfile();
   // await _initHome();
   // await _initProductDetails();
   // await _initCategory();
@@ -128,12 +131,12 @@ Future<void> _initMain() async {
   sl.registerFactory(MainCubit.new);
 }
 
-// Future<void> _initProfile() async {
-//   sl
-//     ..registerFactory(() => ProfileBloc(sl()))
-//     ..registerLazySingleton(() => ProfileRepo(sl()))
-//     ..registerLazySingleton(() => ProfileDataSource(sl()));
-// }
+Future<void> _initProfile() async {
+  sl
+    ..registerFactory(() => ProfileBloc(sl()))
+    ..registerLazySingleton(() => ProfileRepo(sl()))
+    ..registerLazySingleton(() => ProfileDataSource(sl()));
+}
 
 // Future<void> _initHome() async {
 //   sl
