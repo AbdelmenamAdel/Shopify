@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shopify/core/services/shared_pref/pref_keys.dart';
 import 'package:shopify/core/services/shared_pref/shared_pref.dart';
+import 'package:shopify/core/utils/app_logout.dart';
 
 class DioFactory {
   DioFactory._();
@@ -47,8 +48,9 @@ class DioFactory {
           return handler.next(options);
         },
         onError: (error, handler) async {
-          if (error.response?.statusCode == 401) {
-            // await AppLogout().logout();
+          if (error.response?.statusCode == 400 ||
+              error.response?.statusCode == 401) {
+            await AppLogout().logout();
           }
         },
       ),
