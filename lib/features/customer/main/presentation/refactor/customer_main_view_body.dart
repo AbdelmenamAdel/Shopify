@@ -7,7 +7,7 @@ import 'package:shopify/features/customer/favorites/favorites_view.dart';
 import 'package:shopify/features/customer/home/home_view.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 import 'package:shopify/features/customer/main/presentation/refactor/bottom_nav_bar.dart';
-import 'package:shopify/features/customer/profile/profile_view.dart';
+import 'package:shopify/features/customer/profile/presentation/views/profile_view.dart';
 
 class CustomerMainViewBody extends StatelessWidget {
   const CustomerMainViewBody({super.key});
