@@ -42,6 +42,7 @@ class _CustomWebViewState extends State<CustomWebView> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
       ),
       body: Stack(
