@@ -4,7 +4,7 @@ import 'package:shopify/core/enums/nav_bar_enum.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/features/customer/categories/categories_view.dart';
 import 'package:shopify/features/customer/favorites/favorites_view.dart';
-import 'package:shopify/features/customer/home/home_view.dart';
+import 'package:shopify/features/customer/home/presentation/views/home_view.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 import 'package:shopify/features/customer/main/presentation/refactor/bottom_nav_bar.dart';
 import 'package:shopify/features/customer/profile/presentation/views/profile_view.dart';
