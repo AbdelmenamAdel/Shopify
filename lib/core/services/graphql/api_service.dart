@@ -11,6 +11,7 @@ import 'package:shopify/features/admin/users/data/models/get_all_users_response.
 import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
 import 'package:shopify/features/auth/data/models/signup/sign_up_response.dart';
+import 'package:shopify/features/customer/home/data/models/banners_response.dart';
 part 'api_service.g.dart';
 
 const String baseUrl = 'https://api.escuelajs.co';
@@ -103,10 +104,10 @@ abstract class ApiService {
     @Body() Map<String, dynamic> mutation,
   );
 
-  // @POST(graphql)
-  // Future<BannersResponse> getBanners(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<BannersResponse> getBanners(
+    @Body() Map<String, dynamic> query,
+  );
 
   // @POST(graphql)
   // Future<ProductDetailsResponse> productDetails(
