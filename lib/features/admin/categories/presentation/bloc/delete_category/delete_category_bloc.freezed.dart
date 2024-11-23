@@ -72,6 +72,9 @@ class _$DeleteCategoryEventCopyWithImpl<$Res, $Val extends DeleteCategoryEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DeleteCategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$StartedImplCopyWithImpl<$Res>
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$RemoveCategoryEventImplCopyWithImpl<$Res>
       $Res Function(_$RemoveCategoryEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeleteCategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -232,7 +240,9 @@ class _$RemoveCategoryEventImpl implements RemoveCategoryEvent {
   @override
   int get hashCode => Object.hash(runtimeType, categoryId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteCategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RemoveCategoryEventImplCopyWith<_$RemoveCategoryEventImpl> get copyWith =>
@@ -307,7 +317,10 @@ abstract class RemoveCategoryEvent implements DeleteCategoryEvent {
       _$RemoveCategoryEventImpl;
 
   String get categoryId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeleteCategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RemoveCategoryEventImplCopyWith<_$RemoveCategoryEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -382,6 +395,9 @@ class _$DeleteCategoryStateCopyWithImpl<$Res, $Val extends DeleteCategoryState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -398,6 +414,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -515,6 +534,8 @@ class __$$LoadingStateImplCopyWithImpl<$Res>
       _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -554,7 +575,9 @@ class _$LoadingStateImpl implements LoadingState {
   @override
   int get hashCode => Object.hash(runtimeType, categoryId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadingStateImplCopyWith<_$LoadingStateImpl> get copyWith =>
@@ -640,7 +663,10 @@ abstract class LoadingState implements DeleteCategoryState {
       _$LoadingStateImpl;
 
   String get categoryId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadingStateImplCopyWith<_$LoadingStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -659,6 +685,9 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
   __$$SuccessStateImplCopyWithImpl(
       _$SuccessStateImpl _value, $Res Function(_$SuccessStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -776,6 +805,8 @@ class __$$ErrorStateImplCopyWithImpl<$Res>
       _$ErrorStateImpl _value, $Res Function(_$ErrorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -814,7 +845,9 @@ class _$ErrorStateImpl implements ErrorState {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
@@ -899,7 +932,10 @@ abstract class ErrorState implements DeleteCategoryState {
   const factory ErrorState({required final String error}) = _$ErrorStateImpl;
 
   String get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeleteCategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorStateImplCopyWith<_$ErrorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

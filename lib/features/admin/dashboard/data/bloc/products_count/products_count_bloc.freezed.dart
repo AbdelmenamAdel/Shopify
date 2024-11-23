@@ -72,6 +72,9 @@ class _$ProductsCountEventCopyWithImpl<$Res, $Val extends ProductsCountEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProductsCountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$StartedImplCopyWithImpl<$Res>
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProductsCountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -191,6 +197,9 @@ class __$$GetProductsCountEventImplCopyWithImpl<$Res>
   __$$GetProductsCountEventImplCopyWithImpl(_$GetProductsCountEventImpl _value,
       $Res Function(_$GetProductsCountEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProductsCountEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -344,6 +353,9 @@ class _$ProductsCountStateCopyWithImpl<$Res, $Val extends ProductsCountState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -360,6 +372,9 @@ class __$$LoadingStateImplCopyWithImpl<$Res>
   __$$LoadingStateImplCopyWithImpl(
       _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -471,6 +486,8 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
       _$SuccessStateImpl _value, $Res Function(_$SuccessStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -509,7 +526,9 @@ class _$SuccessStateImpl implements SuccessState {
   @override
   int get hashCode => Object.hash(runtimeType, count);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
@@ -589,7 +608,10 @@ abstract class SuccessState implements ProductsCountState {
       _$SuccessStateImpl;
 
   String get count;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -611,6 +633,8 @@ class __$$FailureStateImplCopyWithImpl<$Res>
       _$FailureStateImpl _value, $Res Function(_$FailureStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -649,7 +673,9 @@ class _$FailureStateImpl implements FailureState {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailureStateImplCopyWith<_$FailureStateImpl> get copyWith =>
@@ -729,7 +755,10 @@ abstract class FailureState implements ProductsCountState {
       _$FailureStateImpl;
 
   String get error;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductsCountState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureStateImplCopyWith<_$FailureStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
