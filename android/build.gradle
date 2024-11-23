@@ -1,3 +1,4 @@
+// Settings for repositories and forced Kotlin versions
 allprojects {
     repositories {
         google()
@@ -5,20 +6,34 @@ allprojects {
     }
     configurations.all {
         resolutionStrategy {
-            force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
-            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+            // Ensure the Kotlin versions are aligned
+            force 'org.jetbrains.kotlin:kotlin-stdlib:1.9.0'  // Updated to 1.9.0 for consistency
+            force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0'  // Use the same version as above
         }
     }
 }
 
-rootProject.buildDir = "../build"
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+// Buildscript configuration for Gradle plugins
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Update the Android Gradle plugin version for compatibility
+        classpath "com.android.tools.build:gradle:8.1.0"  // Make sure this is compatible with your SDK version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"  // Align Kotlin plugin version with the rest
+        classpath 'com.google.gms:google-services:4.3.15'  // Google Services plugin (for Firebase, if used)
+    }
 }
 
+rootProject.buildDir = "../build"  // Set the build directory
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"  // Maintain the project-specific build directory
+    project.evaluationDependsOn(":app")  // Ensure evaluation depends on the main app module
+}
+
+// Register clean task
 tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+    delete rootProject.buildDir  // Clean the build directory to resolve stale builds
 }
