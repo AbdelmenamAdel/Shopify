@@ -36,7 +36,9 @@ import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopify/features/auth/data/repos/auth_repo.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/customer/home/data/data_source/banners_data_source.dart';
-import 'package:shopify/features/customer/home/data/repo/banners_repo.dart';
+import 'package:shopify/features/customer/home/data/repo/home_repo.dart';
+import 'package:shopify/features/customer/home/presentation/managers/get_all_categories/get_all_categories_bloc.dart';
+import 'package:shopify/features/customer/home/presentation/managers/get_all_products/get_all_products_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_banners/get_banners_bloc.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 import 'package:shopify/features/customer/profile/data/data_source/profile_data_source.dart';
@@ -144,8 +146,8 @@ Future<void> _initProfile() async {
 Future<void> _initHome() async {
   sl
     ..registerFactory(() => GetBannersBloc(sl()))
-//     ..registerFactory(() => GetAllCategoriesBloc(sl()))
-//     ..registerFactory(() => GetAllProductsBloc(sl()))
+    ..registerFactory(() => GetAllCategoriesBloc(sl()))
+    ..registerFactory(() => GetAllProductsBloc(sl()))
     ..registerLazySingleton(() => HomeRepo(sl()))
     ..registerLazySingleton(() => BannersDataSource(sl()));
 }
