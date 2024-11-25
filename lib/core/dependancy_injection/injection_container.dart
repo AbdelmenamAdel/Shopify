@@ -35,6 +35,9 @@ import 'package:shopify/features/admin/users/presentation/bloc/get_all_users/get
 import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopify/features/auth/data/repos/auth_repo.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shopify/features/customer/home/data/data_source/banners_data_source.dart';
+import 'package:shopify/features/customer/home/data/repo/banners_repo.dart';
+import 'package:shopify/features/customer/home/presentation/managers/get_banners/get_banners_bloc.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 import 'package:shopify/features/customer/profile/data/data_source/profile_data_source.dart';
 import 'package:shopify/features/customer/profile/data/repos/profile_repo.dart';
@@ -52,7 +55,7 @@ Future<void> setupInjector() async {
   await _initPushNotification();
   await _initMain();
   await _initProfile();
-  // await _initHome();
+  await _initHome();
   // await _initProductDetails();
   // await _initCategory();
   // await _initProductsViewAll();
@@ -138,14 +141,14 @@ Future<void> _initProfile() async {
     ..registerLazySingleton(() => ProfileDataSource(sl()));
 }
 
-// Future<void> _initHome() async {
-//   sl
-//     ..registerFactory(() => GetBannersBloc(sl()))
+Future<void> _initHome() async {
+  sl
+    ..registerFactory(() => GetBannersBloc(sl()))
 //     ..registerFactory(() => GetAllCategoriesBloc(sl()))
 //     ..registerFactory(() => GetAllProductsBloc(sl()))
-//     ..registerLazySingleton(() => HomeRepo(sl()))
-//     ..registerLazySingleton(() => HomeDataSource(sl()));
-// }
+    ..registerLazySingleton(() => HomeRepo(sl()))
+    ..registerLazySingleton(() => BannersDataSource(sl()));
+}
 
 // Future<void> _initProductDetails() async {
 //   sl
