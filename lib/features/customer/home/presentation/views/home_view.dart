@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/animations/animate_do.dart';
+import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
+import 'package:shopify/features/customer/home/presentation/managers/get_banners/get_banners_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/refactors/home_view_body.dart';
 
 class HomeView extends StatefulWidget {
@@ -29,30 +32,40 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        HomeViewBody(
-          scrollController: scrollController,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<GetBannersBloc>()
+            ..add(
+              const GetBannersEvent.getBanners(),
+            ),
         ),
-        CustomFadeInLeft(
-          duration: 200,
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              child: FloatingActionButton(
-                onPressed: scrollUp,
-                backgroundColor: context.color.bluePinkLight,
-                child: const Icon(
-                  Icons.arrow_upward,
-                  color: Colors.white,
-                  size: 30,
+      ],
+      child: Stack(
+        children: [
+          HomeViewBody(
+            scrollController: scrollController,
+          ),
+          CustomFadeInLeft(
+            duration: 200,
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: FloatingActionButton(
+                  onPressed: scrollUp,
+                  backgroundColor: context.color.bluePinkLight,
+                  child: const Icon(
+                    Icons.arrow_upward,
+                    color: Colors.white,
+                    size: 30,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
