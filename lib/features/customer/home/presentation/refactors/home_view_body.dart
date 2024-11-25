@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopify/core/common/loading/loading_shimmer.dart';
+import 'package:shopify/features/customer/home/presentation/managers/get_banners/get_banners_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/widgets/banners/banner_sliders.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -17,13 +21,32 @@ class HomeViewBody extends StatelessWidget {
         controller: scrollController,
         slivers: [
           // Static header
-          const SliverToBoxAdapter(
-            child: BannerSliders(
-              bannersList: [
-                'https://img.freepik.com/premium-vector/cyber-monday-sale-neon-banner-design-vector-illustration-shopping-promotion_520826-2162.jpg',
-                'https://img.freepik.com/free-vector/flat-landing-page-template-cyber-monday-sale_23-2150903085.jpg',
-                'https://img.freepik.com/premium-vector/social-media-banner-social-media-template_607096-58.jpg?w=900',
-              ],
+          SliverToBoxAdapter(
+            child: BlocBuilder<GetBannersBloc, GetBannersState>(
+              builder: (context, state) {
+                return state.when(
+                  loading: () {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: LoadingShimmer(
+                        height: 170.h,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                    );
+                  },
+                  success: (imageBannerList) {
+                    return BannerSliders(
+                      bannersList: imageBannerList,
+                    );
+                  },
+                  empty: () {
+                    return const SizedBox.shrink();
+                  },
+                  error: (error) {
+                    return Text('Error: $error');
+                  },
+                );
+              },
             ),
           ),
           // List with separators
