@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shopify/features/customer/home/data/repo/banners_repo.dart';
+import 'package:shopify/features/customer/home/data/repo/home_repo.dart';
 
 part 'get_banners_event.dart';
 part 'get_banners_state.dart';
