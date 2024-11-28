@@ -12,6 +12,7 @@ import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
 import 'package:shopify/features/auth/data/models/signup/sign_up_response.dart';
 import 'package:shopify/features/customer/home/data/models/banners_response.dart';
+import 'package:shopify/features/customer/product_details/models/product_details_response.dart';
 part 'api_service.g.dart';
 
 const String baseUrl = 'https://api.escuelajs.co';
@@ -109,23 +110,23 @@ abstract class ApiService {
     @Body() Map<String, dynamic> query,
   );
 
-  // @POST(graphql)
-  // Future<ProductDetailsResponse> productDetails(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<ProductDetailsResponse> productDetails(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<GetAllProductResponse> getCategory(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<GetAllProductsResponse> getCategory(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<GetAllProductResponse> getProductsViewAll(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<GetAllProductsResponse> getProductsViewAll(
+    @Body() Map<String, dynamic> query,
+  );
 
-  // @POST(graphql)
-  // Future<GetAllProductResponse> searchProduct(
-  //   @Body() Map<String, dynamic> query,
-  // );
+  @POST(graphql)
+  Future<GetAllProductsResponse> searchProduct(
+    @Body() Map<String, dynamic> query,
+  );
 }
