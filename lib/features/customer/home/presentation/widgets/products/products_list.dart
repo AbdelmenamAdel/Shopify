@@ -16,8 +16,6 @@ class ProductsList extends StatelessWidget {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 15.w),
       sliver: SliverGrid.builder(
-        // padding: EdgeInsets.zero,
-        // padding: EdgeInsets.symmetric(horizontal: 15.w),
         itemCount: productList.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, //Number of cloums
