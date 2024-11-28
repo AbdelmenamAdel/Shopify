@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/loading/loading_shimmer.dart';
+import 'package:shopify/core/common/widgets/custom_button.dart';
+import 'package:shopify/core/extensions/context_extension.dart';
+import 'package:shopify/core/language/lang_keys.dart';
+import 'package:shopify/core/routes/app_routes.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_all_categories/get_all_categories_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_all_products/get_all_products_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_banners/get_banners_bloc.dart';
@@ -147,26 +151,42 @@ class HomeViewBody extends StatelessWidget {
               );
             },
           ),
+          SliverToBoxAdapter(
+            child: SizedBox(height: 20.h),
+          ),
+
+          SliverToBoxAdapter(
+            child: BlocBuilder<GetAllProductsBloc, GetAllProductsState>(
+              builder: (context, state) {
+                if (context
+                    .read<GetAllProductsBloc>()
+                    .isProductListSmallerThan10) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: CustomButton(
+                      height: 50.h,
+                      lastRadius: 10,
+                      threeRadius: 10,
+                      width: MediaQuery.of(context).size.width,
+                      backgroundColor: context.color.bluePinkLight,
+                      textColor: Colors.black,
+                      text: context.translate(LangKeys.viewAll),
+                      onPressed: () {
+                        context.pushName(AppRoutes.productsViewAll);
+                      },
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: SizedBox(height: 60.h),
+          ),
         ],
       ),
     );
   }
 }
-//  SliverList(
-//             delegate: SliverChildBuilderDelegate(
-//               (context, index) {
-//                 // Alternate between item and separator
-//                 if (index.isOdd) {
-//                   return const SizedBox(height: 10); // Separator
-//                 }
-//                 final itemIndex = index ~/ 2; // Actual item index
-//                 return Container(
-//                   height: 50,
-//                   width: double.infinity,
-//                   color: Colors.red,
-//                   child: Center(child: Text('Item $itemIndex')),
-//                 );
-//               },
-//               childCount: 50 * 2 + 1, // Items + separators
-//             ),
-//           ),
