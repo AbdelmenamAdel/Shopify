@@ -10,6 +10,8 @@ import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/auth/presentation/views/login_view.dart';
 import 'package:shopify/features/auth/presentation/views/sign_up_view.dart';
 import 'package:shopify/features/customer/main/presentation/views/customer_main_view.dart';
+import 'package:shopify/features/customer/product_details/presentation/view/product_details_view.dart';
+import 'package:shopify/features/customer/products_view_all/persentation/screen/products_view_all_screen.dart';
 
 class AppRoutes {
   static const String login = 'login';
@@ -56,22 +58,22 @@ class AppRoutes {
             url: args! as String,
           ),
         );
-      //   case productDetails:
-      //     return BaseRoute(
-      //       page: ProductDetailsScreen(
-      //         productId: args! as int,
-      //       ),
-      //     );
+      case productDetails:
+        return BaseRoute(
+          page: ProductDetailsView(
+            productId: args! as int,
+          ),
+        );
       //   case category:
       //     return BaseRoute(
       //       page: CatgeoryScreen(
       //         categoryInfo: args! as ({int categoryId, String categoryName}),
       //       ),
       //     );
-      //   case productsViewAll:
-      //     return BaseRoute(
-      //       page: const ProductsViewAllScreen(),
-      //     );
+      case productsViewAll:
+        return BaseRoute(
+          page: const ProductsViewAllScreen(),
+        );
       //   case search:
       //     return BaseRoute(
       //       page: const SearchScreen(),
