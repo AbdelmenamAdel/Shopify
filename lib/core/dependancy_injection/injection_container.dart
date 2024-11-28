@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shopify/core/app/app_cubit/app_cubit.dart';
+import 'package:shopify/core/app/share/share_cubit.dart';
 import 'package:shopify/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopify/core/app/upload_image/data_source/upload_image_data_source.dart';
 import 'package:shopify/core/app/upload_image/repo/upload_image_repo.dart';
@@ -35,12 +36,21 @@ import 'package:shopify/features/admin/users/presentation/bloc/get_all_users/get
 import 'package:shopify/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopify/features/auth/data/repos/auth_repo.dart';
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shopify/features/customer/categories/data/datasource/get_category_datasource.dart';
+import 'package:shopify/features/customer/categories/data/repo/get_category_repo.dart';
+import 'package:shopify/features/customer/categories/presentation/managers/get_category/get_category_bloc.dart';
 import 'package:shopify/features/customer/home/data/data_source/banners_data_source.dart';
 import 'package:shopify/features/customer/home/data/repo/home_repo.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_all_categories/get_all_categories_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_all_products/get_all_products_bloc.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_banners/get_banners_bloc.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
+import 'package:shopify/features/customer/product_details/data/data_source/product_details_data_source.dart';
+import 'package:shopify/features/customer/product_details/data/repo/product_details_repo.dart';
+import 'package:shopify/features/customer/product_details/presentation/manager/product_details/product_details_bloc.dart';
+import 'package:shopify/features/customer/products_view_all/data/data_source/products_view_all_data_source.dart';
+import 'package:shopify/features/customer/products_view_all/data/repos/products_view_all_repo.dart';
+import 'package:shopify/features/customer/products_view_all/persentation/bloc/products_view_all/products_view_all_bloc.dart';
 import 'package:shopify/features/customer/profile/data/data_source/profile_data_source.dart';
 import 'package:shopify/features/customer/profile/data/repos/profile_repo.dart';
 import 'package:shopify/features/customer/profile/presentation/bloc/profile/profile_bloc.dart';
@@ -58,9 +68,9 @@ Future<void> setupInjector() async {
   await _initMain();
   await _initProfile();
   await _initHome();
-  // await _initProductDetails();
-  // await _initCategory();
-  // await _initProductsViewAll();
+  await _initProductDetails();
+  await _initCategory();
+  await _initProductsViewAll();
   // await _initSearch();
   // await _initFavorites();
 }
@@ -75,8 +85,8 @@ Future<void> _initCore() async {
     ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey)
     ..registerFactory(() => UploadImageCubit(sl()))
     ..registerLazySingleton(() => UploadImageRepo(sl()))
-    ..registerLazySingleton(() => UploadImageDataSource(sl()));
-  // ..registerFactory(ShareCubit.new)
+    ..registerLazySingleton(() => UploadImageDataSource(sl()))
+    ..registerFactory(ShareCubit.new);
 }
 
 Future<void> _initAuth() async {
@@ -152,26 +162,26 @@ Future<void> _initHome() async {
     ..registerLazySingleton(() => BannersDataSource(sl()));
 }
 
-// Future<void> _initProductDetails() async {
-//   sl
-//     ..registerFactory(() => ProductDetailsBloc(sl()))
-//     ..registerLazySingleton(() => ProductDetailsRepo(sl()))
-//     ..registerLazySingleton(() => ProductDetailsDataSource(sl()));
-// }
+Future<void> _initProductDetails() async {
+  sl
+    ..registerFactory(() => ProductDetailsBloc(sl()))
+    ..registerLazySingleton(() => ProductDetailsRepo(sl()))
+    ..registerLazySingleton(() => ProductDetailsDataSource(sl()));
+}
 
-// Future<void> _initCategory() async {
-//   sl
-//     ..registerFactory(() => GetCategoryBloc(sl()))
-//     ..registerLazySingleton(() => CatgeoryRepo(sl()))
-//     ..registerLazySingleton(() => CatgeoryDataSource(sl()));
-// }
+Future<void> _initCategory() async {
+  sl
+    ..registerFactory(() => GetCategoryBloc(sl()))
+    ..registerLazySingleton(() => GetCategoryRepo(sl()))
+    ..registerLazySingleton(() => GetCategoryDataSource(sl()));
+}
 
-// Future<void> _initProductsViewAll() async {
-//   sl
-//     ..registerFactory(() => ProductsViewAllBloc(sl()))
-//     ..registerLazySingleton(() => ProductsViewAllRepo(sl()))
-//     ..registerLazySingleton(() => ProductsViewAllDataSource(sl()));
-// }
+Future<void> _initProductsViewAll() async {
+  sl
+    ..registerFactory(() => ProductsViewAllBloc(sl()))
+    ..registerLazySingleton(() => ProductsViewAllRepo(sl()))
+    ..registerLazySingleton(() => ProductsViewAllDataSource(sl()));
+}
 
 // Future<void> _initSearch() async {
 //   sl
