@@ -14,6 +14,8 @@ class GetAllProductsBloc
     on<GetAllProductsEvent>(_getAllProducts);
   }
   final HomeRepo _repo;
+  bool isProductListSmallerThan10 = false;
+
   FutureOr<void> _getAllProducts(
     GetAllProductsEvent event,
     Emitter<GetAllProductsState> emit,
@@ -25,6 +27,8 @@ class GetAllProductsBloc
         if (products.data.productsList.isEmpty) {
           emit(const GetAllProductsState.empty());
         } else {
+          isProductListSmallerThan10 = products.data.productsList.length >= 10;
+
           emit(
             GetAllProductsState.success(
               productList: products.data.productsList,
