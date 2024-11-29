@@ -8,6 +8,7 @@ import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/enums/nav_bar_enum.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/language/lang_keys.dart';
+import 'package:shopify/core/routes/app_routes.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
 import 'package:shopify/core/styles/images/app_images.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
@@ -45,7 +46,7 @@ class CustomerMainAppBar extends StatelessWidget
                   duration: 800,
                   child: CustomLinearButton(
                     onPressed: () {
-                      context.pushName(AppImages.search);
+                      context.pushName(AppRoutes.search);
                     },
                     child: Center(child: SvgPicture.asset(AppImages.search)),
                   ),
