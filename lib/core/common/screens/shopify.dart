@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/app/app_cubit/app_cubit.dart';
+import 'package:shopify/core/app/share/share_cubit.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
 import 'package:shopify/core/language/app_localizations_setup.dart';
 import 'package:shopify/core/routes/app_routes.dart';
 import 'package:shopify/core/services/shared_pref/pref_keys.dart';
 import 'package:shopify/core/services/shared_pref/shared_pref.dart';
 import 'package:shopify/core/styles/theme/app_theme.dart';
+import 'package:shopify/features/customer/favorites/presentation/manager/cubit/favorites_cubit.dart';
 
 class Shopify extends StatelessWidget {
   const Shopify({super.key});
@@ -16,6 +18,12 @@ class Shopify extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => sl<FavoritesCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ShareCubit>(),
+        ),
         BlocProvider(
           create: (context) => sl<AppCubit>()
             ..changeAppThemeMode(
