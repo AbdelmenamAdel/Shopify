@@ -9,6 +9,7 @@ import 'package:shopify/features/admin/home/presentation/views/home_admin_view.d
 import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/auth/presentation/views/login_view.dart';
 import 'package:shopify/features/auth/presentation/views/sign_up_view.dart';
+import 'package:shopify/features/customer/categories/presentation/views/category_view.dart';
 import 'package:shopify/features/customer/main/presentation/views/customer_main_view.dart';
 import 'package:shopify/features/customer/product_details/presentation/view/product_details_view.dart';
 import 'package:shopify/features/customer/products_view_all/persentation/screen/products_view_all_screen.dart';
@@ -64,12 +65,12 @@ class AppRoutes {
             productId: args! as int,
           ),
         );
-      //   case category:
-      //     return BaseRoute(
-      //       page: CatgeoryScreen(
-      //         categoryInfo: args! as ({int categoryId, String categoryName}),
-      //       ),
-      //     );
+      case category:
+        return BaseRoute(
+          page: CategoryView(
+            categoryInfo: args! as ({int categoryId, String categoryName}),
+          ),
+        );
       case productsViewAll:
         return BaseRoute(
           page: const ProductsViewAllScreen(),
