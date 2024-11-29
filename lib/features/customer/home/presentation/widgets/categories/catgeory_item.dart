@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopify/core/common/widgets/custom_container_linear_customer.dart';
 import 'package:shopify/core/common/widgets/text_app.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
+import 'package:shopify/core/routes/app_routes.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -20,12 +21,12 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        // context.pushName(
-        //   AppRoutes.category,
-        //   arguments: (categoryName: title, categoryId: id),
-        // );
+        context.pushName(
+          AppRoutes.category,
+          arguments: (categoryName: title, categoryId: id),
+        );
       },
       child: Column(
         children: [
