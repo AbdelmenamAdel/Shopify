@@ -44,7 +44,9 @@ class CustomerMainAppBar extends StatelessWidget
                 CustomFadeInLeft(
                   duration: 800,
                   child: CustomLinearButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushName(AppImages.search);
+                    },
                     child: Center(child: SvgPicture.asset(AppImages.search)),
                   ),
                 ),
