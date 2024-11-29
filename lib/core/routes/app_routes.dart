@@ -13,6 +13,7 @@ import 'package:shopify/features/customer/categories/presentation/views/category
 import 'package:shopify/features/customer/main/presentation/views/customer_main_view.dart';
 import 'package:shopify/features/customer/product_details/presentation/view/product_details_view.dart';
 import 'package:shopify/features/customer/products_view_all/persentation/screen/products_view_all_screen.dart';
+import 'package:shopify/features/customer/search/presentation/views/search_view.dart';
 
 class AppRoutes {
   static const String login = 'login';
@@ -75,10 +76,10 @@ class AppRoutes {
         return BaseRoute(
           page: const ProductsViewAllScreen(),
         );
-      //   case search:
-      //     return BaseRoute(
-      //       page: const SearchScreen(),
-      //     );
+      case search:
+        return BaseRoute(
+          page: const SearchView(),
+        );
 
       default:
         return BaseRoute(page: const PageUnderBuildScreen());
