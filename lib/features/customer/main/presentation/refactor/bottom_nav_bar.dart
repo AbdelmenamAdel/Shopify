@@ -59,12 +59,12 @@ class MainBottomNavBar extends StatelessWidget {
                                   IconTapNavBar(
                                     onTap: () {
                                       cubit.changeBottomNav(
-                                        NavBarEnum.categories,
+                                        NavBarEnum.notification,
                                       );
                                     },
                                     icon: AppImages.categoriesTab,
                                     isSelected: cubit.navBarEnum ==
-                                        NavBarEnum.categories,
+                                        NavBarEnum.notification,
                                   ),
                                   IconTapNavBar(
                                     onTap: () {
