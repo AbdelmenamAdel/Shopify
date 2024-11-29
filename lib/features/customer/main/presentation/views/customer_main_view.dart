@@ -9,7 +9,7 @@ import 'package:shopify/core/services/push_notification/firebase_cloud_messaging
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 import 'package:shopify/features/customer/main/presentation/refactor/customer_main_view_body.dart';
-import 'package:shopify/features/customer/main/presentation/refactor/home_app_bar.dart';
+import 'package:shopify/features/customer/main/presentation/refactor/main_app_bar.dart';
 
 class CustomerMainView extends StatelessWidget {
   const CustomerMainView({super.key});
