@@ -54,6 +54,9 @@ import 'package:shopify/features/customer/products_view_all/persentation/bloc/pr
 import 'package:shopify/features/customer/profile/data/data_source/profile_data_source.dart';
 import 'package:shopify/features/customer/profile/data/repos/profile_repo.dart';
 import 'package:shopify/features/customer/profile/presentation/bloc/profile/profile_bloc.dart';
+import 'package:shopify/features/customer/search/data/data_source/search_data_source.dart';
+import 'package:shopify/features/customer/search/data/repo/search_repo.dart';
+import 'package:shopify/features/customer/search/presentation/managers/search_bloc/search_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -71,7 +74,7 @@ Future<void> setupInjector() async {
   await _initProductDetails();
   await _initCategory();
   await _initProductsViewAll();
-  // await _initSearch();
+  await _initSearch();
   // await _initFavorites();
 }
 
@@ -183,12 +186,12 @@ Future<void> _initProductsViewAll() async {
     ..registerLazySingleton(() => ProductsViewAllDataSource(sl()));
 }
 
-// Future<void> _initSearch() async {
-//   sl
-//     ..registerFactory(() => SearchBloc(sl()))
-//     ..registerLazySingleton(() => SearchRepo(sl()))
-//     ..registerLazySingleton(() => SearchDataSource(sl()));
-// }
+Future<void> _initSearch() async {
+  sl
+    ..registerFactory(() => SearchBloc(sl()))
+    ..registerLazySingleton(() => SearchRepo(sl()))
+    ..registerLazySingleton(() => SearchDataSource(sl()));
+}
 
 // Future<void> _initFavorites() async {
 //   sl.registerFactory(FavoritesCubit.new);
