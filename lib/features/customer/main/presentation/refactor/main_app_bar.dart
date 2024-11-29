@@ -21,9 +21,10 @@ class CustomerMainAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     final cubit = context.read<MainCubit>();
     return AppBar(
-      elevation: 0,
       automaticallyImplyLeading: false,
       backgroundColor: context.color.mainColor,
+      centerTitle: true,
+      elevation: 0,
       title: BlocBuilder(
         bloc: cubit,
         builder: (context, state) {
@@ -36,9 +37,9 @@ class CustomerMainAppBar extends StatelessWidget
                   child: TextApp(
                     text: context.translate(LangKeys.chooseProducts),
                     theme: context.textStyle.copyWith(
-                      color: context.color.textColor,
-                      fontWeight: FontWeightHelper.bold,
                       fontSize: 20.sp,
+                      fontWeight: FontWeightHelper.bold,
+                      color: context.color.textColor,
                     ),
                   ),
                 ),
@@ -48,14 +49,39 @@ class CustomerMainAppBar extends StatelessWidget
                     onPressed: () {
                       context.pushName(AppRoutes.search);
                     },
-                    child: Center(child: SvgPicture.asset(AppImages.search)),
+                    child: Center(
+                      child: SvgPicture.asset(AppImages.search),
+                    ),
                   ),
                 ),
               ],
             );
-          } else {
-            return const SizedBox.shrink();
+          } else if (cubit.navBarEnum == NavBarEnum.favorites) {
+            return CustomFadeInRight(
+              duration: 800,
+              child: TextApp(
+                text: 'Your Favorite',
+                theme: context.textStyle.copyWith(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeightHelper.bold,
+                  color: context.color.textColor,
+                ),
+              ),
+            );
+          } else if (cubit.navBarEnum == NavBarEnum.notification) {
+            return CustomFadeInRight(
+              duration: 800,
+              child: TextApp(
+                text: 'Notifications',
+                theme: context.textStyle.copyWith(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeightHelper.bold,
+                  color: context.color.textColor,
+                ),
+              ),
+            );
           }
+          return const SizedBox.shrink();
         },
       ),
     );
