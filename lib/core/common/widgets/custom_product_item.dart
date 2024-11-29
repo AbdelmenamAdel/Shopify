@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopify/core/app/share/share_cubit.dart';
 import 'package:shopify/core/common/widgets/custom_container_linear_customer.dart';
 import 'package:shopify/core/common/widgets/custom_favorite_button.dart';
 import 'package:shopify/core/common/widgets/custom_share_button.dart';
@@ -10,6 +11,8 @@ import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/extensions/string_exetension.dart';
 import 'package:shopify/core/routes/app_routes.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
+import 'package:shopify/features/customer/favorites/data/models/favorites_model.dart';
+import 'package:shopify/features/customer/favorites/presentation/manager/cubit/favorites_cubit.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({
@@ -41,91 +44,86 @@ class CustomProductItem extends StatelessWidget {
           children: [
             //Buttons
 
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     //Share Button
-            //     BlocBuilder<ShareCubit, ShareState>(
-            //       builder: (context, state) {
-            //         return state.when(
-            //           initial: () {
-            //             return CustomShareButton(
-            //               size: 25,
-            //               onTap: () {
-            //                 context.read<ShareCubit>().sendDynamicLinkProduct(
-            //                       imageUrl: imageUrl,
-            //                       productId: productId,
-            //                       title: title,
-            //                     );
-            //               },
-            //             );
-            //           },
-            //           loading: (id) {
-            //             if (id == productId) {
-            //               return Padding(
-            //                 padding: EdgeInsets.only(left: 10.w),
-            //                 child: SizedBox(
-            //                   height: 25.h,
-            //                   width: 25.w,
-            //                   child: CircularProgressIndicator(
-            //                     color: context.color.bluePinkLight,
-            //                   ),
-            //                 ),
-            //               );
-            //             }
-            //             return CustomShareButton(
-            //               size: 25,
-            //               onTap: () {},
-            //             );
-            //           },
-            //           success: () {
-            //             return CustomShareButton(
-            //               size: 25,
-            //               onTap: () {
-            //                 context.read<ShareCubit>().sendDynamicLinkProduct(
-            //                       imageUrl: imageUrl,
-            //                       productId: productId,
-            //                       title: title,
-            //                     );
-            //               },
-            //             );
-            //           },
-            //         );
-            //       },
-            //     ),
-            //     //Favorite Button
-            //     BlocBuilder<FavoritesCubit, FavoritesState>(
-            //       builder: (context, state) {
-            //         return CustomFavoriteButton(
-            //           size: 25,
-            //           isFavorites: context
-            //               .read<FavoritesCubit>()
-            //               .isFavorites(productId.toString()),
-            //           onTap: () async {
-            //             await context.read<FavoritesCubit>().manageFavourites(
-            //                   productId: productId.toString(),
-            //                   title: title,
-            //                   image: imageUrl,
-            //                   price: price.toString(),
-            //                   categoryName: categoryName,
-            //                 );
-            //           },
-            //         );
-            //       },
-            //     ),
-            //   ],
-            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomFavoriteButton(
-                  size: 25.sp,
-                  isFavorites: false,
-                  onTap: () {},
+                //Share Button
+                BlocBuilder<ShareCubit, ShareState>(
+                  builder: (context, state) {
+                    return state.when(
+                      initial: () {
+                        return CustomShareButton(
+                          size: 25,
+                          onTap: () {
+                            context.read<ShareCubit>().sendDynamicLinkProduct(
+                                  imageUrl: imageUrl,
+                                  productId: productId,
+                                  title: title,
+                                );
+                          },
+                        );
+                      },
+                      loading: (id) {
+                        if (id == productId) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: 10.w),
+                            child: SizedBox(
+                              height: 25.h,
+                              width: 25.w,
+                              child: CircularProgressIndicator(
+                                color: context.color.bluePinkLight,
+                              ),
+                            ),
+                          );
+                        }
+                        return CustomShareButton(
+                          size: 25,
+                          onTap: () {},
+                        );
+                      },
+                      success: () {
+                        return CustomShareButton(
+                          size: 25,
+                          onTap: () {
+                            context.read<ShareCubit>().sendDynamicLinkProduct(
+                                  imageUrl: imageUrl,
+                                  productId: productId,
+                                  title: title,
+                                );
+                          },
+                        );
+                      },
+                    );
+                  },
                 ),
-                CustomShareButton(size: 25.sp, onTap: () {}),
+                //Favorite Button
+                BlocBuilder<FavoritesCubit, FavoritesState>(
+                  builder: (context, state) {
+                    return CustomFavoriteButton(
+                      size: 25,
+                      isFavorites: context
+                          .read<FavoritesCubit>()
+                          .isFavorite(productId.toString()),
+                      onTap: () async {
+                        final model = FavoritesModel(
+                          id: productId.toString(),
+                          title: title,
+                          image: imageUrl,
+                          price: price.toString(),
+                          categoryName: categoryName,
+                        );
+                        await context
+                            .read<FavoritesCubit>()
+                            .addAndRemoveFavorite(
+                              model,
+                            );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
+
             // Show Image
             Flexible(
               child: Center(
