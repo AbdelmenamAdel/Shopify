@@ -39,6 +39,7 @@ import 'package:shopify/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopify/features/customer/categories/data/datasource/get_category_datasource.dart';
 import 'package:shopify/features/customer/categories/data/repo/get_category_repo.dart';
 import 'package:shopify/features/customer/categories/presentation/managers/get_category/get_category_bloc.dart';
+import 'package:shopify/features/customer/favorites/presentation/manager/cubit/favorites_cubit.dart';
 import 'package:shopify/features/customer/home/data/data_source/banners_data_source.dart';
 import 'package:shopify/features/customer/home/data/repo/home_repo.dart';
 import 'package:shopify/features/customer/home/presentation/managers/get_all_categories/get_all_categories_bloc.dart';
@@ -75,7 +76,7 @@ Future<void> setupInjector() async {
   await _initCategory();
   await _initProductsViewAll();
   await _initSearch();
-  // await _initFavorites();
+  await _initFavorites();
 }
 
 Future<void> _initCore() async {
@@ -193,6 +194,6 @@ Future<void> _initSearch() async {
     ..registerLazySingleton(() => SearchDataSource(sl()));
 }
 
-// Future<void> _initFavorites() async {
-//   sl.registerFactory(FavoritesCubit.new);
-// }
+Future<void> _initFavorites() async {
+  sl.registerFactory(FavoritesCubit.new);
+}
