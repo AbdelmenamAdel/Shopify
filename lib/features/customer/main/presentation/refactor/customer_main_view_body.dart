@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopify/core/enums/nav_bar_enum.dart';
 import 'package:shopify/core/extensions/context_extension.dart';
-import 'package:shopify/features/customer/categories/presentation/views/categories_view.dart';
+import 'package:shopify/features/customer/categories/presentation/views/category_view.dart';
 import 'package:shopify/features/customer/favorites/favorites_view.dart';
 import 'package:shopify/features/customer/home/presentation/views/home_view.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
