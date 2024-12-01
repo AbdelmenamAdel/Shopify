@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
@@ -38,7 +37,9 @@ class FirebaseCloudMessaging {
     await FirebaseMessaging.instance
         .getInitialMessage()
         .then(FirebaseMessagingNavigate.terminatedHandler);
-
+    FirebaseMessaging.onBackgroundMessage(
+      FirebaseMessagingNavigate.backGroundHandler,
+    );
     // background
     FirebaseMessaging.onMessageOpenedApp
         .listen(FirebaseMessagingNavigate.backGroundHandler);
@@ -106,16 +107,21 @@ class FirebaseCloudMessaging {
   }) async {
     final accessToken = await GetServerKeyToken().getServerKeyToken();
     log(accessToken);
-    final message = {
+
+    final data = {
       'message': {
-        'topic': subscriptionKey,
+        'topic': subscriptionKey, // Topic to send the notification to
         'notification': {
-          'title': title,
-          'body': body,
+          'title': title, // Notification title
+          'body': body, // Notification body
         },
-        // 'data': {'productId': productId},
+        // Optional data payload (if needed)
+        'data': {
+          'productId': productId.toString(),
+        },
       },
     };
+
     try {
       final response = await Dio().post<dynamic>(
         EnvVariable.instance.notifcationBaseUrl,
@@ -128,7 +134,7 @@ class FirebaseCloudMessaging {
             'Authorization': 'Bearer $accessToken',
           },
         ),
-        data: jsonEncode(message),
+        data: data,
       );
 
       if (response.statusCode == 200) {
