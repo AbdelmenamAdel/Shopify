@@ -7,8 +7,10 @@ import 'package:shopify/core/app/bloc_observer.dart';
 import 'package:shopify/core/app/env.variables.dart';
 import 'package:shopify/core/common/widgets/error_widget.dart';
 import 'package:shopify/core/dependancy_injection/injection_container.dart';
+import 'package:shopify/core/services/dynamic_link/dynamic_link.dart';
 import 'package:shopify/core/services/hive/hive_database.dart';
 import 'package:shopify/core/services/push_notification/firebase_cloud_messaging.dart';
+import 'package:shopify/core/services/push_notification/local_notfication_service.dart';
 import 'package:shopify/core/services/shared_pref/shared_pref.dart';
 
 void main() async {
@@ -26,7 +28,9 @@ void main() async {
   );
   await Future.wait([
     FirebaseCloudMessaging().init(),
+    DynamicLink().initDynamicLink(),
   ]);
+  await LocalNotificationService.init();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
