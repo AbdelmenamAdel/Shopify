@@ -20,8 +20,8 @@ class UserProfileInfo extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(45),
           child: CachedNetworkImage(
-            height: 80.h,
-            width: 80.w,
+            height: 95.h,
+            width: 95.w,
             fit: BoxFit.fill,
             imageUrl: userInfo.userImage!,
             errorWidget: (context, url, error) => const Icon(
