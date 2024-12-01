@@ -23,8 +23,8 @@ class DynamicLink {
         description: 'Big Offers %50',
         title: title,
       ),
-      uriPrefix: 'https://asroostore.page.link',
-      link: Uri.parse('https://www.udemy.com/$productId'),
+      uriPrefix: 'https://shopify1234.page.link',
+      link: Uri.parse('https://github.com/AbdelmenamAdel/$productId'),
       androidParameters: const AndroidParameters(
         packageName: 'com.example.shopify',
         minimumVersion: 1,
