@@ -52,6 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           PrefKeys.userRole,
           user.userRole ?? '',
         );
+        await _repo.addUserIdFirebase(userId: user.userId.toString());
         emit(AuthState.success(userRole: user.userRole ?? ''));
       },
       failure: (error) {
