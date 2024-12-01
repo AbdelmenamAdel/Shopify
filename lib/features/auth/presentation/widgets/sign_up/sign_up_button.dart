@@ -30,7 +30,14 @@ class SignUpButton extends StatelessWidget {
               context.pushNamedAndRemoveUntil(AppRoutes.mainCustomer);
             },
             error: (errMsg) {
-              ShowToast.showToastErrorTop(message: context.translate(errMsg));
+              if (context.translate(errMsg) == 'null') {
+                ShowToast.showToastSuccessTop(
+                  message: context.translate(LangKeys.loggedSuccessfully),
+                );
+                context.pushNamedAndRemoveUntil(AppRoutes.login);
+              } else {
+                ShowToast.showToastErrorTop(message: context.translate(errMsg));
+              }
             },
           );
         },
