@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shopify/core/services/graphql/api_service.dart';
 import 'package:shopify/core/services/graphql/auth/auth_queries.dart';
+import 'package:shopify/core/utils/app_strings.dart';
 import 'package:shopify/features/auth/data/models/login/login_request_body.dart';
 import 'package:shopify/features/auth/data/models/login/login_response.dart';
 import 'package:shopify/features/auth/data/models/login/user_role_response.dart';
@@ -38,10 +40,10 @@ class AuthDataSource {
   }
 
   // add user id in firebase to used with notfication data base
-  // Future<void> addUserIdFirebase({required String userId}) async {
-  //   await FirebaseFirestore.instance
-  //       .collection(usersCollection)
-  //       .doc(userId)
-  //       .set({});
-  // }
+  Future<void> addUserIdFirebase({required String userId}) async {
+    await FirebaseFirestore.instance
+        .collection(usersCollection)
+        .doc(userId)
+        .set({});
+  }
 }
