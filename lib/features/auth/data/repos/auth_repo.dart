@@ -39,8 +39,8 @@ class AuthRepos {
     }
   }
 
-  // // add user id in firebase to used with notfication data base
-  // Future<void> addUserIdFirebase({required String userId}) async {
-  //   await _dataSource.addUserIdFirebase(userId: userId);
-  // }
+  // add user id in firebase to used with notfication data base
+  Future<void> addUserIdFirebase({required String userId}) async {
+    await _dataSource.addUserIdFirebase(userId: userId);
+  }
 }
