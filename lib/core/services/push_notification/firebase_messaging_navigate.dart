@@ -10,15 +10,15 @@ class FirebaseMessagingNavigate {
   static Future<void> forGroundHandler(RemoteMessage? message) async {
     if (message != null) {
       await LocalNotificationService.showSimpleNotification(
-        title: message.notification!.title ?? '',
-        body: message.notification!.body ?? '',
+        title: message.notification?.title ?? '',
+        body: message.notification?.body ?? '',
         payload: message.data['productId'].toString(),
       );
     }
   }
 
   // background
-  static void backGroundHandler(RemoteMessage? message) {
+  static Future<void> backGroundHandler(RemoteMessage? message) async {
     if (message != null) {
       _navigate(message);
     }
