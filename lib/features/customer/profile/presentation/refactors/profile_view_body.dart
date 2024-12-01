@@ -7,6 +7,7 @@ import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/language/lang_keys.dart';
 import 'package:shopify/core/styles/fonts/font_weight_helper.dart';
 import 'package:shopify/features/customer/profile/presentation/bloc/profile/profile_bloc.dart';
+import 'package:shopify/features/customer/profile/presentation/refactors/auther_media.dart';
 import 'package:shopify/features/customer/profile/presentation/widgets/build_developer.dart';
 import 'package:shopify/features/customer/profile/presentation/widgets/build_version.dart';
 import 'package:shopify/features/customer/profile/presentation/widgets/dark_mode_change.dart';
@@ -85,6 +86,8 @@ class ProfileViewBody extends StatelessWidget {
               duration: 400,
               child: LogOutWidget(),
             ),
+            SizedBox(height: 10.h),
+            const AutherMedia(),
           ],
         ),
       ),
