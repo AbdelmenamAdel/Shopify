@@ -40,10 +40,12 @@ class LocalNotificationService {
   }) async {
     const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
-        'asroo-id',
-        'asroo-name',
+        'shopify-id',
+        'shopify-name',
+        channelDescription: 'shopify-channel',
         importance: Importance.max,
         priority: Priority.high,
+        icon: '@mipmap/ic_launcher',
       ),
       iOS: DarwinNotificationDetails(
         presentAlert: true,
