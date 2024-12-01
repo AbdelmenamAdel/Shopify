@@ -8,6 +8,7 @@ import 'package:shopify/core/extensions/context_extension.dart';
 import 'package:shopify/core/styles/images/app_images.dart';
 import 'package:shopify/features/customer/main/presentation/manager/cubit/main_cubit.dart';
 import 'package:shopify/features/customer/main/presentation/widgets/icon_tap_nav_bar.dart';
+import 'package:shopify/features/customer/main/presentation/widgets/notification_bar_icon.dart';
 
 class MainBottomNavBar extends StatelessWidget {
   const MainBottomNavBar({super.key});
@@ -56,15 +57,16 @@ class MainBottomNavBar extends StatelessWidget {
                                     isSelected:
                                         cubit.navBarEnum == NavBarEnum.home,
                                   ),
-                                  IconTapNavBar(
+                                  InkWell(
                                     onTap: () {
                                       cubit.changeBottomNav(
                                         NavBarEnum.notification,
                                       );
                                     },
-                                    icon: AppImages.categoriesTab,
-                                    isSelected: cubit.navBarEnum ==
-                                        NavBarEnum.notification,
+                                    child: NotificationBarIcon(
+                                      isSelected: cubit.navBarEnum ==
+                                          NavBarEnum.notification,
+                                    ),
                                   ),
                                   IconTapNavBar(
                                     onTap: () {
